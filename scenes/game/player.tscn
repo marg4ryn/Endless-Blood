@@ -262,11 +262,45 @@ custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
+[node name="ItemSlotLabel0" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot0" unique_id=2081277399]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ItemSlot1" type="Panel" parent="PlayerHud/EquipmentContainer/HBoxContainer2" unique_id=1599717613]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="ItemSlotLabel1" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot1" unique_id=1393028233]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ItemSlot2" type="Panel" parent="PlayerHud/EquipmentContainer/HBoxContainer2" unique_id=430662752]
 unique_name_in_owner = true
@@ -274,11 +308,45 @@ custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
+[node name="ItemSlotLabel2" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot2" unique_id=1544731698]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ItemSlot3" type="Panel" parent="PlayerHud/EquipmentContainer/HBoxContainer2" unique_id=926819005]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="ItemSlotLabel3" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot3" unique_id=928578242]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ItemSlot4" type="Panel" parent="PlayerHud/EquipmentContainer/HBoxContainer2" unique_id=1776093271]
 unique_name_in_owner = true
@@ -286,11 +354,45 @@ custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
+[node name="ItemSlotLabel4" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot4" unique_id=1481567547]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ItemSlot5" type="Panel" parent="PlayerHud/EquipmentContainer/HBoxContainer2" unique_id=1617507956]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(46, 46)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="ItemSlotLabel5" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot5" unique_id=551293444]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LevelLabel" type="Label" parent="PlayerHud" unique_id=1412567820]
 unique_name_in_owner = true

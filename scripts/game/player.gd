@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal exp_gained(amount: int)
 
+const DAMAGE_FONT: FontFile = preload("res://assets/fonts/Gothikka.ttf")
+
 @onready var save_manager := SaveManager
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera := $Camera2D
@@ -107,6 +109,7 @@ func take_damage(attack: Attack):
 	if damage > 0:
 		health -= damage
 		health_bar.value = health
+		_show_damage_number(damage)
 		flash_red()
 		if health <= 0:
 			die()
@@ -163,3 +166,29 @@ func apply_bonus(bonus: ItemLevelData) -> void:
 func _on_heal_timer_timeout() -> void:
 	health = min(max_health, health + hp_regen)
 	health_bar.value = health
+
+func _show_damage_number(amount: int) -> void:
+	if amount <= 0:
+		return
+	var label := Label.new()
+	label.text = str(amount)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_override("font", DAMAGE_FONT)
+	label.add_theme_font_size_override("font_size", 28)
+	label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 1.0))
+	label.add_theme_color_override("font_outline_color", Color(0.32, 0.0, 0.0, 1.0))
+	label.add_theme_constant_override("outline_size", 4)
+	label.top_level = true
+	label.z_index = 35
+	label.global_position = global_position + Vector2(randf_range(-12.0, 12.0), -18.0)
+	get_tree().current_scene.add_child(label)
+
+	var tween := label.create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(label, "global_position", label.global_position + Vector2(0, -42), 0.55)
+	tween.parallel().tween_property(label, "modulate:a", 0.0, 1.0)
+	await tween.finished
+	if is_instance_valid(label):
+		label.queue_free()

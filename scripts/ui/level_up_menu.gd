@@ -98,7 +98,7 @@ func _format_bonus(bonus: ItemLevelData) -> String:
 	if bonus.shield > 0:
 		parts.append("Shield +%d" % bonus.shield)
 	if bonus.move_speed > 0:
-		parts.append("Move Speed +%d" % bonus.move_speed)
+		parts.append("Movement Speed +%d" % bonus.move_speed)
 	if bonus.max_hp > 0:
 		parts.append("Max HP +%d" % bonus.max_hp)
 	if bonus.hp_regen > 0:
