@@ -6,26 +6,31 @@
 
 [sub_resource type="Resource" id="Resource_pc88j"]
 script = ExtResource("1_ohgv7")
+item_id = 2
 blood_damage = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_akke0"]
 script = ExtResource("1_ohgv7")
+item_id = 2
 blood_damage = 4
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_3b0uw"]
 script = ExtResource("1_ohgv7")
+item_id = 2
 blood_damage = 6
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_pjknn"]
 script = ExtResource("1_ohgv7")
+item_id = 2
 blood_damage = 8
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_5nfdd"]
 script = ExtResource("1_ohgv7")
+item_id = 2
 blood_damage = 10
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 

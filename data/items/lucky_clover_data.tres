@@ -6,26 +6,31 @@
 
 [sub_resource type="Resource" id="Resource_jjm4y"]
 script = ExtResource("1_dmnmc")
+item_id = 12
 luck = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_d265o"]
 script = ExtResource("1_dmnmc")
+item_id = 12
 luck = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_uqsv1"]
 script = ExtResource("1_dmnmc")
+item_id = 12
 luck = 3
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_e4ldn"]
 script = ExtResource("1_dmnmc")
+item_id = 12
 luck = 4
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_geyu0"]
 script = ExtResource("1_dmnmc")
+item_id = 12
 luck = 5
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 

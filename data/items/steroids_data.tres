@@ -6,26 +6,31 @@
 
 [sub_resource type="Resource" id="Resource_w2bel"]
 script = ExtResource("1_474sm")
+item_id = 15
 attack_size = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_hiakf"]
 script = ExtResource("1_474sm")
+item_id = 15
 attack_size = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_540kx"]
 script = ExtResource("1_474sm")
+item_id = 15
 attack_size = 3
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_kiog2"]
 script = ExtResource("1_474sm")
+item_id = 15
 attack_size = 4
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_jd6mi"]
 script = ExtResource("1_474sm")
+item_id = 15
 attack_size = 5
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 

@@ -6,26 +6,31 @@
 
 [sub_resource type="Resource" id="Resource_8tux0"]
 script = ExtResource("1_gge31")
+item_id = 14
 effect_duration = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_ihfc0"]
 script = ExtResource("1_gge31")
+item_id = 14
 effect_duration = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_g5pws"]
 script = ExtResource("1_gge31")
+item_id = 14
 effect_duration = 3
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_sfimc"]
 script = ExtResource("1_gge31")
+item_id = 14
 effect_duration = 4
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_j8ot6"]
 script = ExtResource("1_gge31")
+item_id = 14
 effect_duration = 5
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 

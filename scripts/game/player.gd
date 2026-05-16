@@ -28,6 +28,8 @@ var base_luck: int = 0
 var base_hp_regen: int = 1
 var base_gold_gain: int = 1
 
+var collected_bonuses: Array[ItemLevelData] = []
+
 var bonus_max_hp: int = 0
 var bonus_speed: int = 0
 var bonus_luck: int = 0
@@ -142,26 +144,50 @@ func gain_xp(amount: int):
 		return
 	exp_gained.emit(amount)
 
+
 func apply_bonus(bonus: ItemLevelData) -> void:
-	bonus_xp_gain          = bonus.xp_gain
-	bonus_gold_gain        = bonus.gold_gain
-	bonus_pickup_range     = bonus.pickup_range
-	bonus_effect_duration  = bonus.effect_duration
-	bonus_luck             = bonus.luck
-	bonus_attack_size      = bonus.attack_size
-	bonus_shield           = bonus.shield
-	bonus_move_speed       = bonus.move_speed
-	bonus_max_hp           = bonus.max_hp
-	bonus_hp_regen         = bonus.hp_regen
-	bonus_attack_speed     = bonus.attack_speed
-	bonus_projectile_count = bonus.projectile_count
-	bonus_holy_damage      = bonus.holy_damage
-	bonus_fire_damage      = bonus.fire_damage
-	bonus_blood_damage     = bonus.blood_damage
-	bonus_physical_damage  = bonus.physical_damage
-	
+	collected_bonuses = collected_bonuses.filter(func(b): return b.item_id != bonus.item_id)
+	collected_bonuses.append(bonus)
+	_recalculate_bonuses()
+
+func _recalculate_bonuses() -> void:
+	bonus_xp_gain          = 0
+	bonus_gold_gain        = 0
+	bonus_pickup_range     = 0
+	bonus_effect_duration  = 0
+	bonus_luck             = 0
+	bonus_attack_size      = 0
+	bonus_shield           = 0
+	bonus_move_speed       = 0
+	bonus_max_hp           = 0
+	bonus_hp_regen         = 0
+	bonus_attack_speed     = 0
+	bonus_projectile_count = 0
+	bonus_holy_damage      = 0
+	bonus_fire_damage      = 0
+	bonus_blood_damage     = 0
+	bonus_physical_damage  = 0
+
+	for b in collected_bonuses:
+		bonus_xp_gain          += b.xp_gain
+		bonus_gold_gain        += b.gold_gain
+		bonus_pickup_range     += b.pickup_range
+		bonus_effect_duration  += b.effect_duration
+		bonus_luck             += b.luck
+		bonus_attack_size      += b.attack_size
+		bonus_shield           += b.shield
+		bonus_move_speed       += b.move_speed
+		bonus_max_hp           += b.max_hp
+		bonus_hp_regen         += b.hp_regen
+		bonus_attack_speed     += b.attack_speed
+		bonus_projectile_count += b.projectile_count
+		bonus_holy_damage      += b.holy_damage
+		bonus_fire_damage      += b.fire_damage
+		bonus_blood_damage     += b.blood_damage
+		bonus_physical_damage  += b.physical_damage
+
 	health_bar.max_value = max_health
-	health = min(health + bonus.max_hp, max_health)
+	health = min(health + bonus_max_hp, max_health)
 
 func _on_heal_timer_timeout() -> void:
 	health = min(max_health, health + hp_regen)

@@ -6,26 +6,31 @@
 
 [sub_resource type="Resource" id="Resource_m7jrd"]
 script = ExtResource("1_nend5")
+item_id = 10
 hp_regen = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_2vlt7"]
 script = ExtResource("1_nend5")
+item_id = 10
 hp_regen = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_yu4hk"]
 script = ExtResource("1_nend5")
+item_id = 10
 hp_regen = 3
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_spyri"]
 script = ExtResource("1_nend5")
+item_id = 10
 hp_regen = 4
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_mdbgs"]
 script = ExtResource("1_nend5")
+item_id = 10
 hp_regen = 5
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 

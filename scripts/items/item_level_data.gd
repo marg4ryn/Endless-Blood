@@ -1,6 +1,7 @@
 extends Resource
 class_name ItemLevelData
 
+@export var item_id: int = 0
 @export var xp_gain: int = 0
 @export var gold_gain: int = 0
 @export var pickup_range: int = 0

@@ -20,18 +20,14 @@ class SpawnEntry:
 var _table: Array[SpawnEntry] = []
 var _spawn_radius := 900.0
 
+var counter := 0
+var _time_offset := 0.0 
 var base_time := 2.0
+var current_time := base_time
 var min_time := 0.3
-var speed := 0.01
-
-var _wave_number := 0
-var _in_wave := false
-var _wave_cooldown := 10.0
+var speed := 0.03
 
 func _ready() -> void:
-	_build_table()
-
-func _build_table() -> void:
 	_table.clear()
 	if huntsman_scene:
 		_table.append(SpawnEntry.new(huntsman_scene, 8.0, 0.0, 1, 1))
@@ -39,16 +35,13 @@ func _build_table() -> void:
 		_table.append(SpawnEntry.new(rat_scene, 1.0, 15.0, 2, 5))
 
 func _on_timer_timeout() -> void:
-	if _in_wave:
-		return
 	var player := get_tree().get_first_node_in_group("player")
 	if not player:
 		return
 	var t: float = GameTimer.elapsed
-	var current_wait: float = max(min_time, base_time * exp(-speed * t))
 
-	if current_wait <= min_time + 0.05:
-		_trigger_wave(player)
+	if counter < 3 && current_time <= min_time:
+		reset_time()
 		return
 
 	var entry := _pick_entry(t)
@@ -58,30 +51,13 @@ func _on_timer_timeout() -> void:
 		for i in range(count):
 			_spawn_one(entry.scene, base_pos, i, count)
 
-	_update_spawn_rate(t)
+		_update_spawn_rate()
 
-func _trigger_wave(player: Node2D) -> void:
-	_in_wave = true
-	_wave_number += 1
-
-	var rings := 1
-	var enemies_per_ring := 8 + _wave_number * 4
-	var t: float = GameTimer.elapsed
-
-	for ring in range(rings):
-		var radius := _spawn_radius + ring * 80.0
-		var entry := _pick_entry(t)
-		if entry == null:
-			continue
-		for i in range(enemies_per_ring):
-			var angle := (i / float(enemies_per_ring)) * TAU
-			var pos := player.global_position + Vector2(cos(angle), sin(angle)) * radius
-			_spawn_one(entry.scene, pos, 0, 1)
-
-	await get_tree().create_timer(_wave_cooldown).timeout
-	_in_wave = false
-	base_time = 2.0
-	timer.wait_time = base_time
+func reset_time() -> void:
+	counter += 1
+	_time_offset = GameTimer.elapsed
+	current_time = base_time
+	timer.wait_time = current_time
 	timer.start()
 
 func _pick_entry(elapsed: float) -> SpawnEntry:
@@ -117,6 +93,8 @@ func _spawn_one(scene: PackedScene, base_pos: Vector2, idx: int, total: int) -> 
 	enemy.global_position = base_pos + offset
 	add_child(enemy)
 
-func _update_spawn_rate(t: float) -> void:
-	timer.wait_time = max(min_time, base_time * exp(-speed * t))
+func _update_spawn_rate() -> void:
+	var t: float = GameTimer.elapsed - _time_offset
+	current_time = max(min_time, base_time * exp(-speed * t))
+	timer.wait_time = current_time
 	timer.start()

@@ -6,26 +6,31 @@
 
 [sub_resource type="Resource" id="Resource_yoxb7"]
 script = ExtResource("1_nqhfw")
+item_id = 1
 projectile_count = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_udnl6"]
 script = ExtResource("1_nqhfw")
+item_id = 1
 projectile_count = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_m73q6"]
 script = ExtResource("1_nqhfw")
+item_id = 1
 projectile_count = 3
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_q7t2g"]
 script = ExtResource("1_nqhfw")
+item_id = 1
 projectile_count = 4
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_5lqi1"]
 script = ExtResource("1_nqhfw")
+item_id = 1
 projectile_count = 5
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
