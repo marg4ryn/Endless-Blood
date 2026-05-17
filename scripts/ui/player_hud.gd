@@ -32,6 +32,8 @@ func _ready():
 	leveling.upgrade_applied.connect(_on_upgrade_applied)
 	weapon_manager.weapon_added.connect(_on_weapon_added)
 	weapon_manager.item_added.connect(_on_item_added)
+	gold = SaveManager.current_gold
+	gold_label.text = str(gold)
 	_refresh_exp_bar()
 
 func _process(_delta):
@@ -99,6 +101,11 @@ func _on_player_gold_gained(_amount: int):
 	gold += _amount
 	gold_label.text = str(gold)
 	SaveManager.current_gold = gold
+
+func add_gold(amount: int) -> void:
+	if amount <= 0:
+		return
+	_on_player_gold_gained(amount)
 
 func _on_upgrade_applied(_upgrade: Dictionary):
 	_refresh_exp_bar()

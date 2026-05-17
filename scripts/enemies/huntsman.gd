@@ -1,4 +1,4 @@
-extends BaseEnemy
+extends "res://scripts/enemies/base_enemy.gd"
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
