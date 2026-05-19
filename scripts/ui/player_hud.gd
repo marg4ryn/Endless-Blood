@@ -29,8 +29,6 @@ func _ready():
 	leveling.upgrade_applied.connect(_on_upgrade_applied)
 	weapon_manager.weapon_added.connect(_on_weapon_added)
 	weapon_manager.item_added.connect(_on_item_added)
-	gold = SaveManager.current_gold
-	gold_label.text = str(gold)
 	_refresh_exp_bar()
 
 func _process(_delta):
@@ -136,7 +134,9 @@ func _show_gold_number(amount: int) -> void:
 	label.add_theme_constant_override("outline_size", 4)
 	label.z_index = 35
 
-	gold_label.get_parent().add_child(label) 
+	var parent := gold_label.get_parent().get_parent()
+	parent.add_child(label)
+	parent.move_child(label, 0)
 
 	var gold_rect := gold_label.get_rect()
 	label.position = gold_rect.get_center() + Vector2(0, -gold_rect.size.y)
@@ -144,8 +144,8 @@ func _show_gold_number(amount: int) -> void:
 	var tween := label.create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(label, "position", label.position + Vector2(0, -48), 1.2)
-	tween.parallel().tween_property(label, "modulate:a", 0.0, 0.9)
+	tween.tween_property(label, "position", label.position + Vector2(-50, -18), 1.0)
+	tween.parallel().tween_property(label, "modulate:a", 0.0, 1.0)
 	
 	await tween.finished
 	if is_instance_valid(label):

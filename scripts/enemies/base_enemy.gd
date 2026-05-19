@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var collision_shape: CollisionShape2D = $HurtboxArea/Hurtbox
 @export var blood_exp_reward := 1
 
+const TREASURE_CHEST_SCRIPT: Script = preload("res://scripts/game/treasure_chest.gd")
 const DAMAGE_FONT: FontFile = preload("res://assets/fonts/Gothikka.ttf")
 const BLOOD_TEXTURES: Array[Texture2D] = [
 	preload("res://assets/blood/blood_1.png"),
@@ -13,7 +14,10 @@ const BLOOD_TEXTURES: Array[Texture2D] = [
 	preload("res://assets/blood/blood_4.png"),
 	preload("res://assets/blood/blood_5.png")
 ]
-const TREASURE_CHEST_SCRIPT: Script = preload("res://scripts/items/treasure_chest.gd")
+
+const CHEST_DROP_BASE := 0.01
+const CHEST_DROP_PER_LUCK := 0.005
+const CHEST_DROP_MAX := 0.1
 
 var speed := 100.0
 var max_health := 100
@@ -145,28 +149,19 @@ func _try_spawn_chest() -> void:
 		return
 
 	var luck: int = int(player.get("luck"))
-	var chance := clampf(0.02 + float(luck) * 0.004, 0.02, 0.15)
+	var chance := clampf(
+		CHEST_DROP_BASE + float(luck) * CHEST_DROP_PER_LUCK,
+		CHEST_DROP_BASE,
+		CHEST_DROP_MAX
+	)
 	if randf() > chance:
 		return
 
 	var chest: TreasureChest = TREASURE_CHEST_SCRIPT.new()
-	var tier := _roll_chest_tier(luck)
-	chest.configure(tier, player)
+	chest.configure(player)
 	chest.global_position = global_position + Vector2(0, _get_enemy_height())
 	var scene := get_tree().current_scene if is_instance_valid(get_tree().current_scene) else get_parent()
 	scene.add_child(chest)
-
-func _roll_chest_tier(luck: int) -> int:
-	var common_weight: int = max(55 - luck * 3, 20)
-	var rare_weight: int = 30 + luck * 2
-	var epic_weight: int = 15 + luck
-	var total_weight: int = common_weight + rare_weight + epic_weight
-	var roll: int = randi_range(1, total_weight)
-	if roll <= common_weight:
-		return 0
-	if roll <= common_weight + rare_weight:
-		return 1
-	return 2
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if is_dead or not area.is_in_group("player"):

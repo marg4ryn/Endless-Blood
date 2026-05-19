@@ -33,7 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://c06ai48b76d8i" path="res://assets/ui/coin.png" id="31_rxoh6"]
 [ext_resource type="Script" uid="uid://ctw5aasp0qrnv" path="res://scripts/ui/level_up_menu.gd" id="32_qpycm"]
 [ext_resource type="AudioStream" uid="uid://bi70lqwsprl26" path="res://assets/sounds/xp_gained.mp3" id="33_bo8sf"]
+[ext_resource type="Script" uid="uid://dvdtosuqr723" path="res://scripts/ui/treasure_menu.gd" id="33_judl8"]
 [ext_resource type="AudioStream" uid="uid://dsoqnkd65nv28" path="res://assets/sounds/level_up.mp3" id="34_dbo1r"]
+[ext_resource type="AudioStream" uid="uid://bjx0oak376d2l" path="res://assets/sounds/treasure.mp3" id="36_51fhs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
 radius = 19.0
@@ -150,6 +152,9 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpvn3"]
+bg_color = Color(0.08235294, 0.08235294, 0.08235294, 1)
 
 [node name="Player" type="CharacterBody2D" unique_id=1140903298 groups=["player"]]
 z_index = 3
@@ -443,13 +448,20 @@ offset_bottom = 58.0
 size_flags_horizontal = 4
 texture = ExtResource("30_j148u")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerHud" unique_id=1983878268]
-offset_left = 1451.0
-offset_top = 757.0
-offset_right = 1491.0
-offset_bottom = 797.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerHud" unique_id=1408075700]
+custom_minimum_size = Vector2(0, 120)
+offset_left = 1390.0
+offset_top = 668.0
+offset_right = 1490.0
+offset_bottom = 788.0
+alignment = 2
 
-[node name="GoldLabel" type="Label" parent="PlayerHud/HBoxContainer" unique_id=1124247624]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerHud/VBoxContainer" unique_id=1983878268]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="GoldLabel" type="Label" parent="PlayerHud/VBoxContainer/HBoxContainer" unique_id=1124247624]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9607843, 0.8117647, 0.11372549, 1)
@@ -457,7 +469,7 @@ theme_override_fonts/font = ExtResource("29_5vue8")
 theme_override_font_sizes/font_size = 30
 text = "0"
 
-[node name="Coin" type="TextureRect" parent="PlayerHud/HBoxContainer" unique_id=1144815562]
+[node name="Coin" type="TextureRect" parent="PlayerHud/VBoxContainer/HBoxContainer" unique_id=1144815562]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 texture = ExtResource("31_rxoh6")
@@ -805,6 +817,117 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_51fhs")
 theme_override_styles/focus = SubResource("StyleBoxFlat_pft2h")
 text = "PASS"
 
+[node name="TreasureMenu" type="CanvasLayer" parent="." unique_id=1157249141]
+process_mode = 2
+layer = 10
+script = ExtResource("33_judl8")
+
+[node name="TreasurePanel" type="PanelContainer" parent="TreasureMenu" unique_id=1678048399]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqjlk")
+
+[node name="TreasureInnerPanel" type="PanelContainer" parent="TreasureMenu/TreasurePanel" unique_id=788698735]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_myrg7")
+
+[node name="MarginContainer" type="MarginContainer" parent="TreasureMenu/TreasurePanel/TreasureInnerPanel" unique_id=446017927]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer" unique_id=503022329]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TreasureChestLabel" type="Label" parent="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer/VBoxContainer" unique_id=1818052759]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.9411765, 0.8117647, 0.15686275, 1)
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 55
+text = "TREASURE CHEST"
+
+[node name="Panel" type="Panel" parent="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer/VBoxContainer" unique_id=87975248]
+custom_minimum_size = Vector2(240, 240)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rpvn3")
+
+[node name="TreasureGoldLabel" type="Label" parent="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer/VBoxContainer/Panel" unique_id=1901510044]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_right = -201.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9411765, 0.8117647, 0.15686275, 1)
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 34
+text = "+ 42"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CoinTexture" type="TextureRect" parent="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer/VBoxContainer/Panel" unique_id=2105007093]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 0
+offset_left = 252.0
+offset_top = 15.0
+offset_right = 280.0
+offset_bottom = 43.0
+texture = ExtResource("31_rxoh6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ChestAnimation" type="TextureRect" parent="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer/VBoxContainer/Panel" unique_id=59210238]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 280)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SubmitButton" type="Button" parent="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer/VBoxContainer" unique_id=2113491057]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_4hvnv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_judl8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_51fhs")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pft2h")
+text = "Submit"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=446460250]
 volume_db = -15.0
 
@@ -817,8 +940,13 @@ process_mode = 3
 stream = ExtResource("34_dbo1r")
 volume_db = -15.0
 
+[node name="TreasureAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=64282752]
+unique_name_in_owner = true
+stream = ExtResource("36_51fhs")
+
 [node name="HealTimer" type="Timer" parent="." unique_id=229005779]
 autostart = true
 
 [connection signal="pressed" from="LevelUpMenu/LevelUpPanel/LevelUpPanel2/MarginContainer/VBoxContainer/PassButton" to="." method="_on_pass_pressed"]
+[connection signal="pressed" from="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer/VBoxContainer/SubmitButton" to="TreasureMenu" method="_on_submit_button_pressed"]
 [connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]
