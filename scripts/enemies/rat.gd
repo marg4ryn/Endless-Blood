@@ -1,4 +1,4 @@
-extends BaseEnemy
+extends "res://scripts/enemies/base_enemy.gd"
 
 const RAT_TEXTURES := [
 	preload("res://assets/enemies/rat_dark_grey.png"),
@@ -15,7 +15,7 @@ func _ready() -> void:
 		[XpGem.Type.MEDIUM, 0],
 		[XpGem.Type.LARGE,  0],
 	]
-	speed       = 130.0
+	speed       = 13.0
 	max_health  = 12
 	damage      = 4
 	blood_scale = 0.4
