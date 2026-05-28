@@ -16,15 +16,12 @@ var _collision_shape: CollisionShape2D
 func _ready() -> void:
 	collision_layer = 0
 	collision_mask = 8
-	monitoring = true
-	monitorable = true
+	set_deferred("monitoring", true)
+	set_deferred("monitorable", true)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	z_index = 1
 	body_entered.connect(_on_body_entered)
 	_build_visuals()
-
-func configure(player: Node2D) -> void:
-	_player = player
 
 func _build_visuals() -> void:
 	_sprite = Sprite2D.new()
@@ -33,12 +30,18 @@ func _build_visuals() -> void:
 	_sprite.texture = _build_closed_texture()
 	_sprite.scale = Vector2.ONE * WORLD_SCALE
 	add_child(_sprite)
+	call_deferred("_build_collision")
+
+func _build_collision() -> void:
 	_collision_shape = CollisionShape2D.new()
 	var shape := RectangleShape2D.new()
 	shape.size = Vector2(34.0, 24.0) * WORLD_SCALE
 	_collision_shape.shape = shape
 	_collision_shape.position = Vector2(0.0, 10.0 * WORLD_SCALE)
 	add_child(_collision_shape)
+
+func configure(player: Node2D) -> void:
+	_player = player
 
 func _build_closed_texture() -> AtlasTexture:
 	var atlas := AtlasTexture.new()
@@ -50,8 +53,9 @@ func _on_body_entered(body: Node) -> void:
 	if _opened or _player == null or body != _player:
 		return
 	_opened = true
-	monitoring = false
+	set_deferred("monitoring", false)
 	_collision_shape.set_deferred("disabled", true)
+	
 	var gold := randi_range(GOLD_MIN, GOLD_MAX)
 	var menu := _player.get_node_or_null("TreasureMenu")
 	if menu != null:
