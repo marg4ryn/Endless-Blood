@@ -11,7 +11,9 @@ const DAMAGE_FONT: FontFile = preload("res://assets/fonts/Gothikka.ttf")
 @onready var weapon_manager: WeaponManager = $WeaponManager
 @onready var audio = $AudioStreamPlayer
 @onready var timer: Timer = $HealTimer
-@onready var hud := $PlayerHud
+@onready var player_hud := $PlayerHud
+@onready var mobile_hud := $MobileHud
+@onready var hud := player_hud
 
 @export var die_sound: AudioStream
 @export var hurt_sounds: Array[AudioStream]
@@ -45,7 +47,6 @@ var bonus_attack_speed: int = 0
 var bonus_projectile_count: int = 0
 var bonus_holy_damage: int = 0
 var bonus_fire_damage: int = 0
-var bonus_blood_damage: int = 0
 var bonus_physical_damage: int = 0
 
 var max_health: int: 
@@ -61,6 +62,9 @@ var gold_gain: int:
 
 func _ready():
 	camera.make_current()
+	
+	if OS.has_feature("mobile"):
+		hud = mobile_hud
 	
 	var h = SaveManager.selected_hero
 	var i = SaveManager.selected_hero_index
@@ -170,7 +174,6 @@ func _recalculate_bonuses() -> void:
 	bonus_projectile_count = 0
 	bonus_holy_damage      = 0
 	bonus_fire_damage      = 0
-	bonus_blood_damage     = 0
 	bonus_physical_damage  = 0
 
 	for b in collected_bonuses:
@@ -188,7 +191,6 @@ func _recalculate_bonuses() -> void:
 		bonus_projectile_count += b.projectile_count
 		bonus_holy_damage      += b.holy_damage
 		bonus_fire_damage      += b.fire_damage
-		bonus_blood_damage     += b.blood_damage
 		bonus_physical_damage  += b.physical_damage
 
 	health_bar.max_value = max_health

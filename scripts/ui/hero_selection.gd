@@ -12,16 +12,15 @@ extends Control
 
 func _ready() -> void:
 	ButtonManager.setup_buttons([start_button, back_button])
+	_load_hero(0)
 	start_button.grab_focus()
-	_select_hero(0)
-
-func _select_hero(index: int) -> void:
+	
+func _load_hero(index: int) -> void:
 	var h = heroes[index]
-	var i = index
 	name_label.text = h.hero_name
-	health_label.text = "HEALTH: %d" % SaveManager.get_stat(i, "max_health", h.max_health)
-	speed_label.text = "SPEED: %d" % SaveManager.get_stat(i, "speed", h.speed)
-	luck_label.text = "LUCK: %d" % SaveManager.get_stat(i, "luck", h.luck)
+	health_label.text = "HEALTH: %d" % SaveManager.get_stat(index, "max_health", h.max_health)
+	speed_label.text = "SPEED: %d" % SaveManager.get_stat(index, "speed", h.speed)
+	luck_label.text = "LUCK: %d" % SaveManager.get_stat(index, "luck", h.luck)
 	hero_icon.texture = h.icon
 
 func _on_start_button_1_pressed() -> void:

@@ -12,6 +12,8 @@ func setup_buttons(buttons: Array[Button]) -> void:
 	for btn in buttons:
 		btn.mouse_entered.connect(_on_hover)
 		btn.focus_entered.connect(_on_hover)
+		if OS.has_feature("mobile"):
+			btn.focus_mode = Control.FOCUS_NONE
 	
 	_setup_vertical_navigation(buttons)
 

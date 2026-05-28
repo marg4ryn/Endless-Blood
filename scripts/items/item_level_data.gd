@@ -16,5 +16,4 @@ class_name ItemLevelData
 @export var projectile_count: int = 0
 @export var holy_damage: int = 0
 @export var fire_damage: int = 0
-@export var blood_damage: int = 0
 @export var physical_damage: int = 0

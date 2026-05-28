@@ -66,7 +66,8 @@ func _on_level_up_ready(choices: Array[Dictionary]):
 
 	level_up_panel.visible = true
 	get_tree().paused = true
-	level_up_buttons[0].grab_focus()
+	if not OS.has_feature("mobile"):
+		level_up_buttons[0].grab_focus()
 
 func _on_choice_pressed(index: int):
 	level_up_panel.visible = false
@@ -111,8 +112,6 @@ func _format_bonus(bonus: ItemLevelData) -> String:
 		parts.append("Holy Damage +%d" % bonus.holy_damage)
 	if bonus.fire_damage > 0:
 		parts.append("Fire Damage +%d" % bonus.fire_damage)
-	if bonus.blood_damage > 0:
-		parts.append("Blood Damage +%d" % bonus.blood_damage)
 	if bonus.physical_damage > 0:
 		parts.append("Physical Damage +%d" % bonus.physical_damage)
 	return "\n".join(parts)

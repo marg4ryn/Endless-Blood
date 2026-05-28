@@ -67,5 +67,7 @@ func _apply_gold_reward(gold: int) -> void:
 	if gold <= 0 or _player == null:
 		return
 	var hud := _player.get_node_or_null("PlayerHud")
+	if OS.has_feature("mobile"):
+		hud = _player.get_node_or_null("MobileHud")
 	if hud != null and hud.has_method("add_gold"):
 		hud.call("add_gold", gold)

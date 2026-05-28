@@ -16,7 +16,6 @@
 [ext_resource type="Resource" uid="uid://b3ppt8dx2w51d" path="res://data/items/fire_paper_data.tres" id="14_u5a7k"]
 [ext_resource type="Resource" uid="uid://cs6wsqi01y68g" path="res://data/items/holy_paper_data.tres" id="15_j5i4e"]
 [ext_resource type="Resource" uid="uid://b0ujuop6njief" path="res://data/items/beast_paper_data.tres" id="16_ubpfs"]
-[ext_resource type="Resource" uid="uid://hmxpm1qgmx11" path="res://data/items/blood_paper_data.tres" id="17_n6vp6"]
 [ext_resource type="Resource" uid="uid://dbadhxn1t56mi" path="res://data/items/empty_shell_data.tres" id="18_hrdr4"]
 [ext_resource type="Resource" uid="uid://ubeej3vjyun6" path="res://data/items/hunter_bone_data.tres" id="19_ttce3"]
 [ext_resource type="Resource" uid="uid://xvu2whvkfl14" path="res://data/items/gold_pendant_data.tres" id="20_44276"]
@@ -31,11 +30,16 @@
 [ext_resource type="FontFile" uid="uid://ch3oxkxxaq75j" path="res://assets/fonts/Gothikka.ttf" id="29_5vue8"]
 [ext_resource type="Texture2D" uid="uid://7v62mahm2sut" path="res://assets/ui/skull.png" id="30_j148u"]
 [ext_resource type="Texture2D" uid="uid://c06ai48b76d8i" path="res://assets/ui/coin.png" id="31_rxoh6"]
+[ext_resource type="Script" uid="uid://byxx6uvirglro" path="res://scripts/ui/mobile_hud.gd" id="32_pft2h"]
 [ext_resource type="Script" uid="uid://ctw5aasp0qrnv" path="res://scripts/ui/level_up_menu.gd" id="32_qpycm"]
 [ext_resource type="AudioStream" uid="uid://bi70lqwsprl26" path="res://assets/sounds/xp_gained.mp3" id="33_bo8sf"]
 [ext_resource type="Script" uid="uid://dvdtosuqr723" path="res://scripts/ui/treasure_menu.gd" id="33_judl8"]
+[ext_resource type="Script" uid="uid://dhp1c73pse2eu" path="res://addons/virtual_joystick/virtual_joystick.gd" id="33_rpvn3"]
 [ext_resource type="AudioStream" uid="uid://dsoqnkd65nv28" path="res://assets/sounds/level_up.mp3" id="34_dbo1r"]
+[ext_resource type="Texture2D" uid="uid://bm30au8mjfc2f" path="res://addons/virtual_joystick/textures/joystick_base_outline.png" id="34_xfcrr"]
+[ext_resource type="Texture2D" uid="uid://dt13r06u87fib" path="res://addons/virtual_joystick/textures/joystick_tip_arrows.png" id="35_g8nad"]
 [ext_resource type="AudioStream" uid="uid://bjx0oak376d2l" path="res://assets/sounds/treasure.mp3" id="36_51fhs"]
+[ext_resource type="Texture2D" uid="uid://cvk4260ljo7d4" path="res://assets/ui/pause.png" id="36_fpvr6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
 radius = 19.0
@@ -62,6 +66,9 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhrtq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqjlk"]
 bg_color = Color(0, 0, 0, 0.7647059)
@@ -207,7 +214,7 @@ script = ExtResource("9_g8nad")
 
 [node name="LevelManager" type="Node2D" parent="." unique_id=343121902]
 script = ExtResource("10_fpvr6")
-item_pool = Array[ExtResource("11_dhrtq")]([ExtResource("12_a6jc5"), ExtResource("13_iecro"), ExtResource("14_u5a7k"), ExtResource("15_j5i4e"), ExtResource("16_ubpfs"), ExtResource("17_n6vp6"), ExtResource("18_hrdr4"), ExtResource("19_ttce3"), ExtResource("20_44276"), ExtResource("21_7omoa"), ExtResource("22_82g4i"), ExtResource("23_c411b"), ExtResource("24_il6jt"), ExtResource("25_8q4wn"), ExtResource("26_i00hb"), ExtResource("27_q1dp1")])
+item_pool = Array[ExtResource("11_dhrtq")]([ExtResource("12_a6jc5"), ExtResource("13_iecro"), ExtResource("14_u5a7k"), ExtResource("15_j5i4e"), ExtResource("16_ubpfs"), ExtResource("18_hrdr4"), ExtResource("19_ttce3"), ExtResource("20_44276"), ExtResource("21_7omoa"), ExtResource("22_82g4i"), ExtResource("23_c411b"), ExtResource("24_il6jt"), ExtResource("25_8q4wn"), ExtResource("26_i00hb"), ExtResource("27_q1dp1")])
 
 [node name="PlayerHud" type="CanvasLayer" parent="." unique_id=70834009]
 script = ExtResource("28_scvou")
@@ -475,6 +482,343 @@ layout_mode = 2
 texture = ExtResource("31_rxoh6")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="MobileHud" type="CanvasLayer" parent="." unique_id=1496015851]
+script = ExtResource("32_pft2h")
+
+[node name="MobileExpBar" type="ProgressBar" parent="MobileHud" unique_id=120340529]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+offset_right = 1500.0
+offset_bottom = 38.0
+theme_override_styles/background = SubResource("StyleBoxFlat_uf5tr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lgqa7")
+max_value = 1.0
+show_percentage = false
+
+[node name="EquipmentContainer" type="VBoxContainer" parent="MobileHud" unique_id=804998194]
+offset_left = 11.0
+offset_top = 46.0
+offset_right = 307.0
+offset_bottom = 166.0
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MobileHud/EquipmentContainer" unique_id=1225348227]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="MobileWeaponSlot0" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer" unique_id=1406694227]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileWeaponSlot1" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer" unique_id=1792363580]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileWeaponSlot2" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer" unique_id=879469100]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileWeaponSlot3" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer" unique_id=1016433926]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MobileHud/EquipmentContainer" unique_id=947445192]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="MobileItemSlot0" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer2" unique_id=774808851]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileItemSlotLabel0" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer2/MobileItemSlot0" unique_id=2104906089]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MobileItemSlot1" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer2" unique_id=1265409696]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileItemSlotLabel1" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer2/MobileItemSlot1" unique_id=829390166]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MobileItemSlot2" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer2" unique_id=478281218]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileItemSlotLabel2" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer2/MobileItemSlot2" unique_id=1329973735]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MobileItemSlot3" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer2" unique_id=2000608928]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileItemSlotLabel3" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer2/MobileItemSlot3" unique_id=589187380]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MobileItemSlot4" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer2" unique_id=1483150662]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileItemSlotLabel4" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer2/MobileItemSlot4" unique_id=51412478]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MobileItemSlot5" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer2" unique_id=126623207]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileItemSlotLabel5" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer2/MobileItemSlot5" unique_id=594816865]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MobileLevelLabel" type="Label" parent="MobileHud" unique_id=968531972]
+unique_name_in_owner = true
+offset_left = 318.0
+offset_top = 45.0
+offset_right = 378.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 40
+text = "LVL 1"
+
+[node name="MobileTimeLabel" type="Label" parent="MobileHud" unique_id=314536828]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = 45.0
+offset_right = 26.0
+offset_bottom = 86.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 40
+text = "0:00"
+
+[node name="MobileKillsLabel" type="Label" parent="MobileHud" unique_id=1224276595]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = 48.0
+offset_right = -59.0
+offset_bottom = 89.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 2
+
+[node name="Skull" type="TextureRect" parent="MobileHud" unique_id=714876693]
+custom_minimum_size = Vector2(24, 24)
+offset_left = 1446.0
+offset_top = 46.0
+offset_right = 1491.0
+offset_bottom = 89.0
+size_flags_horizontal = 4
+texture = ExtResource("30_j148u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MobileHud" unique_id=847278171]
+custom_minimum_size = Vector2(0, 120)
+offset_left = 1390.0
+offset_top = 668.0
+offset_right = 1490.0
+offset_bottom = 788.0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MobileHud/VBoxContainer" unique_id=1130620337]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+alignment = 2
+
+[node name="MobileGoldLabel" type="Label" parent="MobileHud/VBoxContainer/HBoxContainer" unique_id=477411421]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.8117647, 0.11372549, 1)
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="Coin" type="TextureRect" parent="MobileHud/VBoxContainer/HBoxContainer" unique_id=1817497506]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture = ExtResource("31_rxoh6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Virtual Joystick" type="Control" parent="MobileHud" unique_id=720328073]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -222.0
+offset_right = 213.0
+offset_bottom = -8.0
+grow_vertical = 0
+script = ExtResource("33_rpvn3")
+pressed_color = Color(0.74509805, 0.74509805, 0.74509805, 0.49411765)
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"
+
+[node name="Base" type="TextureRect" parent="MobileHud/Virtual Joystick" unique_id=1239632700]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 100)
+mouse_force_pass_scroll_events = false
+texture = ExtResource("34_xfcrr")
+stretch_mode = 5
+
+[node name="Tip" type="TextureRect" parent="MobileHud/Virtual Joystick/Base" unique_id=1932021912]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("35_g8nad")
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="MobileHud" unique_id=1638348414]
+offset_left = 16.0
+offset_top = 187.0
+offset_right = 71.0
+offset_bottom = 245.0
+texture = ExtResource("36_fpvr6")
+expand_mode = 1
+
+[node name="PauseButton" type="Button" parent="MobileHud" unique_id=193478716]
+offset_left = 9.0
+offset_top = 179.0
+offset_right = 79.0
+offset_bottom = 252.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_dhrtq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dhrtq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dhrtq")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_dhrtq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_dhrtq")
 
 [node name="LevelUpMenu" type="CanvasLayer" parent="." unique_id=1698592873]
 process_mode = 2
@@ -947,6 +1291,7 @@ stream = ExtResource("36_51fhs")
 [node name="HealTimer" type="Timer" parent="." unique_id=229005779]
 autostart = true
 
+[connection signal="pressed" from="MobileHud/PauseButton" to="MobileHud" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="LevelUpMenu/LevelUpPanel/LevelUpPanel2/MarginContainer/VBoxContainer/PassButton" to="." method="_on_pass_pressed"]
 [connection signal="pressed" from="TreasureMenu/TreasurePanel/TreasureInnerPanel/MarginContainer/VBoxContainer/SubmitButton" to="TreasureMenu" method="_on_submit_button_pressed"]
 [connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]

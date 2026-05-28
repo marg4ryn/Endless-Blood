@@ -13,7 +13,7 @@ config_version=5
 config/name="Endless Blood"
 run/main_scene="uid://cfj3mq8jf72mm"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="uid://lwbwa5xkwmhc"
+config/icon="uid://blqbjvx2fq1em"
 
 [autoload]
 
@@ -27,6 +27,11 @@ GameData="*uid://4xds8v2rvsbx"
 
 window/size/viewport_width=1500
 window/size/viewport_height=800
+window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/virtual_joystick/plugin.cfg")
 
 [input]
 
@@ -61,6 +66,10 @@ attack={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="Player"
@@ -80,3 +89,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
