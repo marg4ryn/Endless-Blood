@@ -66,8 +66,7 @@ func _on_level_up_ready(choices: Array[Dictionary]):
 
 	level_up_panel.visible = true
 	get_tree().paused = true
-	if not OS.has_feature("mobile"):
-		level_up_buttons[0].grab_focus()
+	level_up_buttons[0].grab_focus()
 
 func _on_choice_pressed(index: int):
 	level_up_panel.visible = false
