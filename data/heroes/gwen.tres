@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HeroData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/heroes/gwen_icon.png" id="1_icon"]
+[ext_resource type="Script" path="res://data/heroes/hero_data.gd" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://data/heroes/gwen_sprite_frames_sheet.tres" id="2_frames"]
+
+[resource]
+script = ExtResource("1_script")
+hero_name = "Gwen"
+icon = ExtResource("1_icon")
+sprite_frames = ExtResource("2_frames")
+max_health = 18
+speed = 230
+luck = -1

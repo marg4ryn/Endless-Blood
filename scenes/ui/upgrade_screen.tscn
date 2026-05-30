@@ -112,22 +112,22 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0mgnl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1865480506]
-custom_minimum_size = Vector2(250, 700)
+custom_minimum_size = Vector2(760, 860)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -277.5
-offset_right = 150.0
-offset_bottom = 277.5
+offset_left = -380.0
+offset_top = -360.0
+offset_right = 380.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=969885505]
-custom_minimum_size = Vector2(300, 60)
+custom_minimum_size = Vector2(760, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1fj2j")
 theme_override_font_sizes/font_size = 45
@@ -138,21 +138,23 @@ vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=2093451613]
 layout_mode = 2
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 24
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1813502609]
 layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
 
 [node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=1509315739]
-custom_minimum_size = Vector2(300, 500)
+custom_minimum_size = Vector2(320, 560)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f2wp6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel" unique_id=115613840]
 layout_mode = 0
-offset_left = 4.0
-offset_right = 300.0
+offset_left = 10.0
+offset_right = 310.0
 offset_bottom = 68.0
 size_flags_horizontal = 3
 
@@ -168,9 +170,13 @@ vertical_alignment = 1
 
 [node name="HeroIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1804256509]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 275)
+custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=200000002]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 12)
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1475766007]
 layout_mode = 2
@@ -202,6 +208,7 @@ stretch_mode = 5
 
 [node name="StatsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=432125707]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="HealthContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer/StatsContainer" unique_id=1238700684]
 layout_mode = 2
@@ -317,11 +324,190 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_to70l")
 theme_override_styles/focus = SubResource("StyleBoxFlat_giv8v")
 text = "+1"
 
+[node name="GwenPanel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=220000012]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 560)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f2wp6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel" unique_id=220000013]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 310.0
+offset_bottom = 68.0
+size_flags_horizontal = 3
+
+[node name="GwenNameLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer" unique_id=220000014]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1fj2j")
+theme_override_font_sizes/font_size = 30
+text = "Gwen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GwenHeroIcon" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer" unique_id=220000015]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 230)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="GwenSpacer" type="Control" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer" unique_id=220000016]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 12)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer" unique_id=220000017]
+layout_mode = 2
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/MarginContainer" unique_id=220000018]
+layout_mode = 2
+alignment = 2
+
+[node name="GwenCostLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/MarginContainer/HBoxContainer" unique_id=220000019]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1fj2j")
+theme_override_font_sizes/font_size = 21
+text = "COST:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Coin" type="TextureRect" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/MarginContainer/HBoxContainer" unique_id=220000020]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("4_v3unh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer" unique_id=220000021]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HealthContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer" unique_id=220000022]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="GwenHealthLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/HealthContainer" unique_id=220000023]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6392157, 0.2784314, 0.2784314, 1)
+theme_override_fonts/font = ExtResource("2_1fj2j")
+theme_override_font_sizes/font_size = 26
+text = "HEALTH"
+vertical_alignment = 1
+
+[node name="GwenHealthSegments" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/HealthContainer" unique_id=220000024]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="GwenHealthButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/HealthContainer" unique_id=220000025]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1fj2j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_k541j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_giv8v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_giv8v")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_to70l")
+theme_override_styles/focus = SubResource("StyleBoxFlat_giv8v")
+text = "+4"
+
+[node name="SpeedContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer" unique_id=220000026]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="GwenSpeedLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/SpeedContainer" unique_id=220000027]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2901961, 0.49803922, 0.70980394, 1)
+theme_override_fonts/font = ExtResource("2_1fj2j")
+theme_override_font_sizes/font_size = 26
+text = "SPEED"
+vertical_alignment = 1
+
+[node name="GwenSpeedSegments" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/SpeedContainer" unique_id=220000028]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="GwenSpeedButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/SpeedContainer" unique_id=220000029]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1fj2j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_k541j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_giv8v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_giv8v")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_to70l")
+theme_override_styles/focus = SubResource("StyleBoxFlat_giv8v")
+text = "+3"
+
+[node name="LuckContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer" unique_id=220000030]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="GwenLuckLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/LuckContainer" unique_id=220000031]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24705882, 0.6431373, 0.41568628, 1)
+theme_override_fonts/font = ExtResource("2_1fj2j")
+theme_override_font_sizes/font_size = 26
+text = "LUCK"
+vertical_alignment = 1
+
+[node name="GwenLuckSegments" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/LuckContainer" unique_id=220000032]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="GwenLuckButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/LuckContainer" unique_id=220000033]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1fj2j")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_k541j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_giv8v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_giv8v")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_to70l")
+theme_override_styles/focus = SubResource("StyleBoxFlat_giv8v")
+text = "+1"
+
 [node name="BackButton" type="Button" parent="VBoxContainer" unique_id=229645908]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(266, 40)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/margin_top = 28
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -369,4 +555,7 @@ stream = ExtResource("7_5glte")
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer/StatsContainer/HealthContainer/HealthButton" to="." method="_on_upgrade_health"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer/StatsContainer/SpeedContainer/SpeedButton" to="." method="_on_upgrade_speed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer/StatsContainer/LuckContainer/LuckButton" to="." method="_on_upgrade_luck"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/HealthContainer/GwenHealthButton" to="." method="_on_gwen_upgrade_health"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/SpeedContainer/GwenSpeedButton" to="." method="_on_gwen_upgrade_speed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer/LuckContainer/GwenLuckButton" to="." method="_on_gwen_upgrade_luck"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_pressed"]

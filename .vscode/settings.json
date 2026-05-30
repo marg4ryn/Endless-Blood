@@ -1,3 +1,4 @@
 {
-    "godotTools.editorPath.godot4": "c:\\Users\\natal\\Downloads\\Godot_v4.6.1-stable_win64.exe\\Godot_v4.6.1-stable_win64.exe"
+    "godotTools.editorPath.godot4": "c:\\Users\\natal\\Downloads\\Godot_v4.6.1-stable_win64.exe\\Godot_v4.6.1-stable_win64.exe",
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }
