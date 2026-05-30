@@ -1,32 +1,88 @@
 extends Control
 
-@export var heroes: Array[HeroData] = []
+var heroes: Array[HeroData] = []
+var _selected_index: int = 0
 
-@onready var start_button: Button= %StartButton
-@onready var health_label: Label = %HealthLabel
-@onready var speed_label: Label = %SpeedLabel
-@onready var luck_label: Label = %LuckLabel
-@onready var name_label: Label = %NameLabel
-@onready var hero_icon: TextureRect = %HeroIcon
+@onready var select_gwen_button: Button = %SelectGwenButton
+@onready var select_blood_hunter_button: Button = %SelectBloodHunterButton
+@onready var play_button: Button = %PlayButton
 @onready var back_button: Button = %BackButton
 
-func _ready() -> void:
-	ButtonManager.setup_buttons([start_button, back_button])
-	_load_hero(0)
-	start_button.grab_focus()
-	
-func _load_hero(index: int) -> void:
-	var h = heroes[index]
-	name_label.text = h.hero_name
-	health_label.text = "HEALTH: %d" % SaveManager.get_stat(index, "max_health", h.max_health)
-	speed_label.text = "SPEED: %d" % SaveManager.get_stat(index, "speed", h.speed)
-	luck_label.text = "LUCK: %d" % SaveManager.get_stat(index, "luck", h.luck)
-	hero_icon.texture = h.icon
+@onready var gwen_panel: Panel = %GwenPanel
+@onready var blood_hunter_panel: Panel = %BloodHunterPanel
+@onready var gwen_name_label: Label = %GwenNameLabel
+@onready var blood_hunter_name_label: Label = %BloodHunterNameLabel
+@onready var gwen_icon: TextureRect = %GwenIcon
+@onready var blood_hunter_icon: TextureRect = %BloodHunterIcon
 
-func _on_start_button_1_pressed() -> void:
-	SaveManager.selected_hero = heroes[0]
-	SaveManager.selected_hero_index = 0
+func _ready() -> void:
+	heroes = SaveManager.all_heroes
+	ButtonManager.setup_buttons([select_gwen_button, select_blood_hunter_button, play_button, back_button])
+	_selected_index = _index_for_hero_name("Gwen")
+	if _selected_index < 0:
+		_selected_index = 0
+	_update_cards()
+	play_button.grab_focus()
+	
+
+func _index_for_hero_name(hero_name: String) -> int:
+	for i in range(heroes.size()):
+		if heroes[i].hero_name == hero_name:
+			return i
+	return -1
+
+
+func _apply_selection(index: int) -> void:
+	if heroes.is_empty():
+		return
+	_selected_index = clampi(index, 0, heroes.size() - 1)
+	SaveManager.selected_hero = heroes[_selected_index]
+	SaveManager.selected_hero_index = _selected_index
+	_update_cards()
+
+
+func _update_cards() -> void:
+	if heroes.is_empty():
+		return
+
+	for i in range(heroes.size()):
+		var h: HeroData = heroes[i]
+		if h.hero_name == "Gwen":
+			gwen_name_label.text = h.hero_name
+			gwen_icon.texture = h.icon
+		elif h.hero_name == "Blood Hunter":
+			blood_hunter_name_label.text = h.hero_name
+			blood_hunter_icon.texture = h.icon
+
+	var gwen_index := _index_for_hero_name("Gwen")
+	var blood_index := _index_for_hero_name("Blood Hunter")
+	var gwen_selected := _selected_index == gwen_index and gwen_index != -1
+	var blood_selected := _selected_index == blood_index and blood_index != -1
+
+	gwen_panel.modulate = Color(1, 1, 1, 1) if gwen_selected else Color(0.78, 0.78, 0.78, 1)
+	blood_hunter_panel.modulate = Color(1, 1, 1, 1) if blood_selected else Color(0.78, 0.78, 0.78, 1)
+	select_gwen_button.text = "Selected" if gwen_selected else "Select"
+	select_blood_hunter_button.text = "Selected" if blood_selected else "Select"
+
+
+func _on_play_button_pressed() -> void:
+	if heroes.is_empty():
+		return
+	SaveManager.selected_hero = heroes[_selected_index]
+	SaveManager.selected_hero_index = _selected_index
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
+
+
+func _on_select_gwen_pressed() -> void:
+	var index := _index_for_hero_name("Gwen")
+	if index != -1:
+		_apply_selection(index)
+
+
+func _on_select_blood_hunter_pressed() -> void:
+	var index := _index_for_hero_name("Blood Hunter")
+	if index != -1:
+		_apply_selection(index)
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")

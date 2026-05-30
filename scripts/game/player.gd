@@ -49,6 +49,8 @@ var bonus_holy_damage: int = 0
 var bonus_fire_damage: int = 0
 var bonus_physical_damage: int = 0
 
+var _frame_offsets: Dictionary = {}
+
 var max_health: int: 
 	get: return base_max_health + bonus_max_hp
 var speed: int:
@@ -72,6 +74,13 @@ func _ready():
 	base_speed      = SaveManager.get_stat(i, "speed", h.speed)
 	base_luck       = SaveManager.get_stat(i, "luck", h.luck)
 	sprite.sprite_frames = h.sprite_frames
+	# Stabilize sprite origin so frames don't appear to jump
+	sprite.centered = true
+	# compute per-frame offsets to keep the character visually stable
+	_compute_frame_offsets()
+	# apply offsets when frame changes
+	sprite.connect("frame_changed", Callable(self, "_on_sprite_frame_changed"))
+	_on_sprite_frame_changed()
 	
 	health = max_health
 	health_bar.value = health
@@ -100,13 +109,98 @@ func calculate_facing_direction_x():
 			facing_direction_x = 1
 
 func update_animation(direction: Vector2):
+	var target_animation := &"idle"
+
 	if is_attacking or direction == Vector2.ZERO:
-		sprite.play("idle")
-		return
-	if abs(direction.x) > abs(direction.y):
-		sprite.play("walk_right" if direction.x > 0 else "walk_left")
+		target_animation = &"idle"
+	elif abs(direction.x) > abs(direction.y):
+		target_animation = &"walk_right" if direction.x > 0 else &"walk_left"
 	else:
-		sprite.play("walk_down" if direction.y > 0 else "walk_up")
+		target_animation = &"walk_down" if direction.y > 0 else &"walk_up"
+
+	if sprite.animation != target_animation:
+		sprite.play(target_animation)
+		# ensure offset for newly played animation/frame is applied
+		_on_sprite_frame_changed()
+
+func _compute_frame_offsets() -> void:
+	_frame_offsets.clear()
+	var frames_res := sprite.sprite_frames
+	if frames_res == null:
+		return
+	for anim in frames_res.get_animation_names():
+		var count := frames_res.get_frame_count(anim)
+		_frame_offsets[anim] = []
+		for i in range(count):
+			var tex := frames_res.get_frame_texture(anim, i)
+			var offset_vec := Vector2.ZERO
+			if tex is AtlasTexture:
+				var atlas: Texture2D = tex.atlas
+				var region: Rect2 = tex.region
+				if atlas is Texture2D and region.size.x > 0 and region.size.y > 0:
+					var img: Image = null
+					if atlas.has_method("get_data"):
+						img = atlas.get_data()
+					elif atlas.has_method("get_image"):
+						img = atlas.get_image()
+					elif atlas.has_method("decompress_to_image"):
+						img = atlas.decompress_to_image()
+					if img == null:
+						# cannot read pixels from this texture type; skip offset calc
+						_frame_offsets[anim].append(offset_vec)
+						continue
+					if img.has_method("lock"):
+						img.lock()
+					var rx: int = int(region.position.x)
+					var ry: int = int(region.position.y)
+					var rw: int = int(region.size.x)
+					var rh: int = int(region.size.y)
+					# clamp sampling rectangle to actual image bounds
+					var img_w: int = img.get_width()
+					var img_h: int = img.get_height()
+					var start_x: int = clamp(rx, 0, img_w)
+					var start_y: int = clamp(ry, 0, img_h)
+					var end_x: int = clamp(rx + rw, 0, img_w)
+					var end_y: int = clamp(ry + rh, 0, img_h)
+					if start_x >= end_x or start_y >= end_y:
+						# invalid or empty region inside atlas — skip
+						_frame_offsets[anim].append(offset_vec)
+						img.unlock()
+						continue
+					var minx: int = end_x
+					var miny: int = end_y
+					var maxx: int = start_x
+					var maxy: int = start_y
+					for x in range(start_x, end_x):
+						for y in range(start_y, end_y):
+							var c: Color = img.get_pixel(x, y)
+							if c.a > 0.01:
+								if x < minx:
+									minx = x
+								if y < miny:
+									miny = y
+								if x > maxx:
+									maxx = x
+								if y > maxy:
+									maxy = y
+					if img.has_method("unlock"):
+						img.unlock()
+					if maxx >= minx:
+						var center: Vector2 = Vector2((minx + maxx) * 0.5, (miny + maxy) * 0.5)
+						var local_center: Vector2 = center - region.position
+						var ref: Vector2 = region.size * 0.5
+						offset_vec = ref - local_center
+			_frame_offsets[anim].append(offset_vec)
+
+func _on_sprite_frame_changed() -> void:
+	var anim := sprite.animation
+	var idx := sprite.frame
+	if _frame_offsets.has(anim):
+		var arr: Array = _frame_offsets[anim]
+		if idx >= 0 and idx < arr.size():
+			sprite.offset = arr[idx]
+			return
+	sprite.offset = Vector2.ZERO
 
 func take_damage(attack: Attack):
 	if is_dead:

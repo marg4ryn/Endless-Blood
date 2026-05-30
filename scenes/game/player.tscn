@@ -193,7 +193,7 @@ texture_progress = ExtResource("7_ynh2p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2016837988]
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("8_xfcrr")
-animation = &"idle"
+animation = &"walk_up"
 
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=1307745962 groups=["player"]]
 position = Vector2(1, 0)
