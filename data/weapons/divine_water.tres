@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_ub3xs"]
 script = ExtResource("2_46bpi")
-size_bonus = 0.3
+size_bonus = 0.5
 metadata/_custom_type_script = "uid://dina5wfrgcftm"
 
 [sub_resource type="Resource" id="Resource_138ct"]
@@ -17,17 +17,12 @@ metadata/_custom_type_script = "uid://dina5wfrgcftm"
 
 [sub_resource type="Resource" id="Resource_213fv"]
 script = ExtResource("2_46bpi")
-size_bonus = 0.3
+damage_holy = 2
 metadata/_custom_type_script = "uid://dina5wfrgcftm"
 
 [sub_resource type="Resource" id="Resource_6u7uq"]
 script = ExtResource("2_46bpi")
-damage_holy = 1
-metadata/_custom_type_script = "uid://dina5wfrgcftm"
-
-[sub_resource type="Resource" id="Resource_03alu"]
-script = ExtResource("2_46bpi")
-cooldown_multiplier = 0.9
+cooldown_multiplier = 0.8
 metadata/_custom_type_script = "uid://dina5wfrgcftm"
 
 [resource]
@@ -37,5 +32,5 @@ base_damage_holy = 1
 base_cooldown = 0.5
 icon = ExtResource("1_46bpi")
 weapon_scene = ExtResource("4_ub3xs")
-upgrades = Array[ExtResource("2_46bpi")]([SubResource("Resource_ub3xs"), SubResource("Resource_138ct"), SubResource("Resource_213fv"), SubResource("Resource_6u7uq"), SubResource("Resource_03alu")])
+upgrades = Array[ExtResource("2_46bpi")]([SubResource("Resource_ub3xs"), SubResource("Resource_138ct"), SubResource("Resource_213fv"), SubResource("Resource_6u7uq")])
 metadata/_custom_type_script = "uid://hp4souuetdmb"

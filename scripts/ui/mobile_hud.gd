@@ -137,7 +137,7 @@ func _refresh_weapon_label(index: int, weapon_data: WeaponData, level: int) -> v
 	label.add_theme_constant_override("shadow_offset_y", 1)
 	label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 1))
 	label.text = _to_roman(level + 1)
-	if level >= weapon_data.upgrades.size() - 1:
+	if level >= weapon_data.upgrades.size():
 		label.add_theme_color_override("font_color", Color("#f5cf1d"))
 	else:
 		label.remove_theme_color_override("font_color")

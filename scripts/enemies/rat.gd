@@ -10,14 +10,14 @@ const RAT_TEXTURES := [
 
 func _ready() -> void:
 	xp_gem_table = [
-		[XpGem.Type.NONE,   20],
-		[XpGem.Type.SMALL,  80],
+		[XpGem.Type.NONE,   0],
+		[XpGem.Type.SMALL,  100],
 		[XpGem.Type.MEDIUM, 0],
 		[XpGem.Type.LARGE,  0],
 	]
-	speed       = 130.0
+	speed       = 120.0
 	max_health  = 6
-	damage      = 2
+	damage      = 3
 	blood_scale = 0.4
 	super()
 

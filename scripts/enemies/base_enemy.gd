@@ -15,9 +15,9 @@ const BLOOD_TEXTURES: Array[Texture2D] = [
 	preload("res://assets/blood/blood_5.png")
 ]
 
-const CHEST_DROP_BASE := 0.01
-const CHEST_DROP_PER_LUCK := 0.005
-const CHEST_DROP_MAX := 0.1
+const CHEST_DROP_BASE := 0.001
+const CHEST_DROP_PER_LUCK := 0.0015
+const CHEST_DROP_MAX := 0.01
 
 var speed := 100.0
 var max_health := 100
@@ -40,6 +40,7 @@ var xp_gem_table: Array = [
 ]
 
 func _ready() -> void:
+	add_to_group("enemies") 
 	health = max_health
 	_setup_visuals()
 
@@ -100,7 +101,8 @@ func die() -> void:
 	if is_instance_valid(player) and player.has_method("gain_blood_exp"):
 		player.gain_blood_exp(blood_exp_reward)
 	velocity = Vector2.ZERO
-	$HurtboxArea.monitoring = false
+	$HurtboxArea.set_deferred("monitoring", false)
+	$HurtboxArea.set_deferred("monitorable", false)
 	$Collision.set_deferred("disabled", true)
 	$DamageTimer.stop()
 	player.add_kill()
@@ -108,7 +110,8 @@ func die() -> void:
 	_spawn_blood_decal()
 	_try_spawn_chest()
 	_drop_xp_gems()
-	queue_free()
+	visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func attack() -> void:
 	if _player_in_range == null or not is_instance_valid(_player_in_range):

@@ -4,14 +4,14 @@ extends "res://scripts/enemies/base_enemy.gd"
 
 func _ready() -> void:
 	xp_gem_table = [
-		[XpGem.Type.NONE,   0],
-		[XpGem.Type.SMALL,  99],
-		[XpGem.Type.MEDIUM, 1],
-		[XpGem.Type.LARGE,  0],
+		[XpGem.Type.NONE,   20],
+		[XpGem.Type.SMALL,  200],
+		[XpGem.Type.MEDIUM, 5],
+		[XpGem.Type.LARGE,  1],
 	]
 	speed       = 75.0
 	max_health  = 12
-	damage      = 6
+	damage      = 8
 	blood_scale = 0.9
 	super()
 

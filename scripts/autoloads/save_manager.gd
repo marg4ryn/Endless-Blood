@@ -18,8 +18,8 @@ var heroes: Array = [
 ]
 
 const STAT_PER_LEVEL = {
-	"max_health": 4,
-	"speed": 3,
+	"max_health": 2,
+	"speed": 2,
 	"luck": 1,
 }
 const SAVE_PATH = "user://save.json"

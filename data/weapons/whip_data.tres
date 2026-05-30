@@ -25,17 +25,12 @@ script = ExtResource("3_tqdcg")
 cooldown_multiplier = 0.9
 metadata/_custom_type_script = "uid://dina5wfrgcftm"
 
-[sub_resource type="Resource" id="Resource_s8ag2"]
-script = ExtResource("3_tqdcg")
-damage_physical = 2
-metadata/_custom_type_script = "uid://dina5wfrgcftm"
-
 [resource]
 script = ExtResource("2_mfcgi")
 name = "Whip"
 base_knockback = 1
-base_damage_physical = 4
+base_damage_physical = 6
 icon = ExtResource("1_1f4gc")
 weapon_scene = ExtResource("3_bptgk")
-upgrades = Array[ExtResource("3_tqdcg")]([SubResource("Resource_tqdcg"), SubResource("Resource_co2f0"), SubResource("Resource_bi4lc"), SubResource("Resource_1px51"), SubResource("Resource_s8ag2")])
+upgrades = Array[ExtResource("3_tqdcg")]([SubResource("Resource_tqdcg"), SubResource("Resource_co2f0"), SubResource("Resource_bi4lc"), SubResource("Resource_1px51")])
 metadata/_custom_type_script = "uid://hp4souuetdmb"

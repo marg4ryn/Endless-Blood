@@ -17,15 +17,16 @@ class SpawnEntry:
 @export var rat_scene: PackedScene
 @onready var timer: Timer = $Timer
 
+var _pool: Array = []
 var _table: Array[SpawnEntry] = []
 var _spawn_radius := 900.0
 
-var counter := 0
+var counter := 2
 var _time_offset := 0.0 
 var base_time := 2.0
 var current_time := base_time
-var min_time := 0.3
-var speed := 0.03
+var min_time := 0.1
+var speed := 0.01
 
 func _ready() -> void:
 	_table.clear()
@@ -39,20 +40,21 @@ func _on_timer_timeout() -> void:
 	if not player:
 		return
 	var t: float = GameTimer.elapsed
-
-	if counter < 3 && current_time <= min_time:
+	if counter < 2 && current_time <= min_time:
 		reset_time()
 		return
-
+	if _get_active_count() >= 200:
+		timer.wait_time = 0.5
+		timer.start()
+		return
 	var entry := _pick_entry(t)
 	if entry:
 		var count := randi_range(entry.group_min, entry.group_max)
 		var base_pos := _get_spawn_position(player)
 		for i in range(count):
 			_spawn_one(entry.scene, base_pos, i, count)
-
 		_update_spawn_rate()
-
+		
 func reset_time() -> void:
 	counter += 1
 	_time_offset = GameTimer.elapsed
@@ -82,19 +84,46 @@ func _get_spawn_position(player: Node2D) -> Vector2:
 		tries += 1
 	return Vector2.ZERO
 
-func _spawn_one(scene: PackedScene, base_pos: Vector2, idx: int, total: int) -> void:
-	var enemy := scene.instantiate()
-	enemy.add_to_group("enemies")
+func _spawn_one(scene, base_pos, idx, total):
+	var enemy = _get_from_pool(scene)
 	var offset := Vector2.ZERO
 	if total > 1:
-		var angle := (idx / float(total)) * TAU
+		var angle: float = (idx / float(total)) * TAU
 		offset = Vector2(cos(angle), sin(angle)) * 50.0
 		offset += Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	enemy.global_position = base_pos + offset
-	add_child(enemy)
+	enemy.visible = true
+	enemy.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _update_spawn_rate() -> void:
 	var t: float = GameTimer.elapsed - _time_offset
 	current_time = max(min_time, base_time * exp(-speed * t))
 	timer.wait_time = current_time
 	timer.start()
+	
+func _get_from_pool(scene: PackedScene) -> Node:
+	for enemy in _pool:
+		if not enemy.visible:
+			_reset_enemy(enemy)
+			return enemy
+	var enemy = scene.instantiate()
+	add_child(enemy)
+	_pool.append(enemy)
+	_reset_enemy(enemy)
+	return enemy
+
+func _reset_enemy(enemy: Node) -> void:
+	enemy.is_dead = false
+	enemy.visible = true
+	enemy.process_mode = Node.PROCESS_MODE_INHERIT
+	enemy.get_node("HurtboxArea").monitoring = true
+	enemy.get_node("HurtboxArea").monitorable = true
+	enemy.get_node("Collision").set_deferred("disabled", false)
+	enemy.health = enemy.max_health
+
+func _get_active_count() -> int:
+	var count := 0
+	for enemy in _pool:
+		if enemy.visible:
+			count += 1
+	return count

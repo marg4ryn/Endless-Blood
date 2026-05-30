@@ -45,9 +45,6 @@ func make_attack() -> Attack:
 func get_enemies_sorted_by_distance() -> Array[Node2D]:
 	var enemies: Array[Node2D] = []
 	for e in get_tree().get_nodes_in_group(enemies_group):
-		if is_instance_valid(e) and e.has_method("take_damage"):
+		if is_instance_valid(e) and e.has_method("take_damage") and e.visible:
 			enemies.append(e as Node2D)
-	enemies.sort_custom(func(a, b):
-		return a.global_position.distance_to(player.global_position) \
-			 < b.global_position.distance_to(player.global_position))
 	return enemies

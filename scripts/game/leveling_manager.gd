@@ -141,7 +141,6 @@ func _roll_choices() -> Array[Dictionary]:
 				continue
 			result.append(entry)
 
-	# dopełnij jeśli za mało
 	if result.size() < 3 and not result.is_empty():
 		var original := result.duplicate()
 		var i := 0
@@ -197,4 +196,4 @@ func _get_active_weapon(weapon_data: WeaponData) -> BaseWeapon:
 	return null
 
 func _required_blood(target_level: int) -> int:
-	return min(30, int(round(pow(1.8, target_level - 1))))
+	return min(40, int(round(pow(1.8, target_level - 1))))

@@ -75,9 +75,10 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Player attacks"
-2d_physics/layer_4="Collisions"
+2d_physics/layer_4="Player & Props Collisions"
 2d_physics/layer_5="Enemies Hitboxes"
 2d_physics/layer_6="XP Gems"
+2d_physics/layer_7="Enemy Collisions"
 
 [physics]
 

@@ -239,7 +239,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_giv8v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_giv8v")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_to70l")
 theme_override_styles/focus = SubResource("StyleBoxFlat_giv8v")
-text = "+4"
+text = "+2"
 
 [node name="SpeedContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer/StatsContainer" unique_id=1632630711]
 layout_mode = 2
@@ -277,7 +277,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_giv8v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_giv8v")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_to70l")
 theme_override_styles/focus = SubResource("StyleBoxFlat_giv8v")
-text = "+3"
+text = "+2"
 
 [node name="LuckContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer/StatsContainer" unique_id=1792093966]
 layout_mode = 2

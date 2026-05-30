@@ -5,8 +5,8 @@ const OPEN_SOUND: AudioStream = preload("res://assets/sounds/treasure.mp3")
 const CHEST_SHEET: Texture2D = preload("res://assets/chests/Treasures_Spritesheet.png")
 const CLOSED_REGION := Rect2(0, 0, 48, 40)
 const WORLD_SCALE: float = 1.4
-const GOLD_MIN := 40
-const GOLD_MAX := 100
+const GOLD_MIN := 10
+const GOLD_MAX := 40
 
 var _player: Node2D = null
 var _opened := false
