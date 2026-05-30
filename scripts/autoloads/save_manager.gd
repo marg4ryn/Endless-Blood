@@ -7,6 +7,7 @@ var gold: int = 0
 var upgrade_cost: int = 50
 var best_time: float = 0.0
 var best_kills: int = 0
+var tutorial_seen: bool = false
 var selected_hero: HeroData = null
 var selected_hero_index: int = 0
 
@@ -88,6 +89,7 @@ func reset_save() -> void:
 	upgrade_cost = 50
 	best_time = 0.0
 	best_kills = 0
+	tutorial_seen = false
 	heroes = [
 		{"max_health_level": 0, "speed_level": 0, "luck_level": 0},
 		{"max_health_level": 0, "speed_level": 0, "luck_level": 0},
@@ -105,7 +107,8 @@ func save_game() -> void:
 		"upgrade_cost": upgrade_cost,
 		"best_time": best_time,
 		"best_kills": best_kills,
-		"heroes": heroes
+		"heroes": heroes,
+		"tutorial_seen": tutorial_seen
 	}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
@@ -126,6 +129,7 @@ func load_game() -> void:
 	upgrade_cost = data.get("upgrade_cost", upgrade_cost)
 	best_time    = data.get("best_time", best_time)
 	best_kills   = data.get("best_kills", best_kills)
+	tutorial_seen = data.get("tutorial_seen", tutorial_seen)
 	heroes       = data.get("heroes", heroes)
 	_ensure_hero_slots()
 	stats_changed.emit()
@@ -133,4 +137,10 @@ func load_game() -> void:
 	if not all_heroes.is_empty():
 		selected_hero_index = clampi(selected_hero_index, 0, all_heroes.size() - 1)
 		selected_hero = all_heroes[selected_hero_index]
+
+func mark_tutorial_seen() -> void:
+	if tutorial_seen:
+		return
+	tutorial_seen = true
+	save_game()
 	
