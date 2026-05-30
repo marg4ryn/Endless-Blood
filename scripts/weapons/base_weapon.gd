@@ -3,6 +3,8 @@ extends Node2D
 
 var data: WeaponData
 var player: Node2D
+var stats: WeaponStats
+var current_level: int = 0
 var enemies_group := "enemies"
 
 @onready var timer: Timer = $Timer
@@ -10,12 +12,21 @@ var enemies_group := "enemies"
 func setup(weapon_data: WeaponData, player_node: Node2D) -> void:
 	data = weapon_data
 	player = player_node
-	timer.wait_time = data.cooldown
+	_rebuild_stats()
+	timer.wait_time = stats.cooldown
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 
-func _ready() -> void:
-	pass
+func upgrade() -> bool:
+	if current_level >= data.upgrades.size():
+		return false
+	current_level += 1
+	_rebuild_stats()
+	timer.wait_time = stats.cooldown
+	return true
+
+func _rebuild_stats() -> void:
+	stats = WeaponStats.build(data, current_level)
 
 func _on_timer_timeout() -> void:
 	_do_attack()
@@ -23,13 +34,20 @@ func _on_timer_timeout() -> void:
 func _do_attack() -> void:
 	pass
 
+func make_attack() -> Attack:
+	var a := Attack.new()
+	a.knockback = stats.knockback 
+	a.damage_physical = stats.damage_physical
+	a.damage_fire = stats.damage_fire
+	a.damage_holy = stats.damage_holy
+	return a
+
 func get_enemies_sorted_by_distance() -> Array[Node2D]:
 	var enemies: Array[Node2D] = []
 	for e in get_tree().get_nodes_in_group(enemies_group):
-		if is_instance_valid(e) and not e.is_dead:
+		if is_instance_valid(e) and e.has_method("take_damage"):
 			enemies.append(e as Node2D)
 	enemies.sort_custom(func(a, b):
 		return a.global_position.distance_to(player.global_position) \
-			 < b.global_position.distance_to(player.global_position)
-	)
+			 < b.global_position.distance_to(player.global_position))
 	return enemies

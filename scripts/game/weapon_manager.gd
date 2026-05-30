@@ -2,6 +2,7 @@ class_name WeaponManager
 extends Node
 
 signal weapon_added(weapon_data: WeaponData)
+signal weapon_upgraded(weapon_data: WeaponData, new_level: int)
 signal item_added(item_data: ItemData)
 
 const MAX_WEAPONS = 4
@@ -9,43 +10,42 @@ const MAX_ITEMS = 6
 
 var active_weapons: Array[BaseWeapon] = []
 var active_items: Array[ItemData] = []
-var weapon_damage_bonus: int = 0
-var weapon_range_bonus: float = 0.0
 
 @onready var player: Node2D = get_parent()
 
-func add_weapon(weapon_data: WeaponData) -> bool:
-	if active_weapons.size() >= MAX_WEAPONS:
-		return false
+func add_or_upgrade_weapon(weapon_data: WeaponData) -> bool:
 	for w in active_weapons:
 		if w.data == weapon_data:
-			return true
+			var ok = w.upgrade()
+			if ok:
+				weapon_upgraded.emit(weapon_data, w.current_level)
+			return ok
+
+	if active_weapons.size() >= MAX_WEAPONS:
+		return false
+
 	var weapon_node = weapon_data.weapon_scene.instantiate() as BaseWeapon
 	add_child(weapon_node)
 	weapon_node.setup(weapon_data, player)
-	_apply_bonuses_to_weapon(weapon_node)
 	active_weapons.append(weapon_node)
 	weapon_added.emit(weapon_data)
 	return true
 
-func add_item(item_data: ItemData) -> void:
+func add_item(item_data: ItemData) -> bool:
 	if active_items.has(item_data):
-		return
+		return false
 	if active_items.size() >= MAX_ITEMS:
-		return
+		return false
 	active_items.append(item_data)
 	item_added.emit(item_data)
-
-func set_weapon_bonuses(damage_bonus: int, range_bonus: float) -> void:
-	weapon_damage_bonus = max(0, damage_bonus)
-	weapon_range_bonus = max(0.0, range_bonus)
-	for w in active_weapons:
-		_apply_bonuses_to_weapon(w)
+	return true
 
 func disable_all() -> void:
 	for w in active_weapons:
 		w.timer.stop()
 
-func _apply_bonuses_to_weapon(weapon: BaseWeapon) -> void:
-	if weapon != null and weapon.has_method("set_upgrade_bonuses"):
-		weapon.set_upgrade_bonuses(weapon_damage_bonus, weapon_range_bonus)
+func clear_all() -> void:
+	for w in active_weapons:
+		w.queue_free()
+	active_weapons.clear()
+	active_items.clear()

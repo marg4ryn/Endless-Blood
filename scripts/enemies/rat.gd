@@ -16,8 +16,8 @@ func _ready() -> void:
 		[XpGem.Type.LARGE,  0],
 	]
 	speed       = 130.0
-	max_health  = 12
-	damage      = 4
+	max_health  = 6
+	damage      = 2
 	blood_scale = 0.4
 	super()
 

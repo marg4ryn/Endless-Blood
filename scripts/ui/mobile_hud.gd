@@ -15,6 +15,10 @@ const UI_FONT := preload("res://assets/fonts/Gothikka.ttf")
 @onready var weapon_slots: Array[Panel] = [
 	%MobileWeaponSlot0, %MobileWeaponSlot1, %MobileWeaponSlot2, %MobileWeaponSlot3
 ]
+@onready var weapon_labels: Array[Label] = [
+	%MobileWeaponSlotLabel0, %MobileWeaponSlotLabel1, 
+	%MobileWeaponSlotLabel2, %MobileWeaponSlotLabel3
+]
 @onready var item_slots: Array[Panel] = [
 	%MobileItemSlot0, %MobileItemSlot1, %MobileItemSlot2,
 	%MobileItemSlot3, %MobileItemSlot4, %MobileItemSlot5
@@ -34,6 +38,7 @@ func _ready():
 	leveling.upgrade_applied.connect(_on_upgrade_applied)
 	weapon_manager.weapon_added.connect(_on_weapon_added)
 	weapon_manager.item_added.connect(_on_item_added)
+	weapon_manager.weapon_upgraded.connect(_on_weapon_upgraded)
 	_refresh_exp_bar()
 
 func _process(_delta):
@@ -58,6 +63,7 @@ func _on_player_gold_gained(amount: int):
 func _on_weapon_added(weapon_data: WeaponData):
 	var index = weapon_manager.active_weapons.size() - 1
 	update_weapon_slot(index, weapon_data.icon)
+	_refresh_weapon_label(index, weapon_data, 0)
 
 func update_weapon_slot(index: int, icon: Texture2D) -> void:
 	if index >= weapon_slots.size():
@@ -108,12 +114,44 @@ func _on_player_exp_gained(_amount: int):
 func _on_upgrade_applied(_upgrade: Dictionary):
 	_refresh_exp_bar()
 	_refresh_all_item_labels()
+	_refresh_all_weapon_labels()
 
 func _refresh_all_item_labels() -> void:
 	for i in weapon_manager.active_items.size():
 		var item_data: ItemData = weapon_manager.active_items[i]
 		var level: int = leveling.item_levels.get(item_data, 0)
 		_refresh_item_label(i, item_data, level)
+
+func _on_weapon_upgraded(weapon_data: WeaponData, new_level: int):
+	var index := _get_weapon_index(weapon_data)
+	if index >= 0:
+		_refresh_weapon_label(index, weapon_data, new_level)
+
+func _refresh_weapon_label(index: int, weapon_data: WeaponData, level: int) -> void:
+	if index >= weapon_labels.size():
+		return
+	var label := weapon_labels[index]
+	if not is_instance_valid(label):
+		return
+	label.add_theme_constant_override("shadow_offset_x", 1)
+	label.add_theme_constant_override("shadow_offset_y", 1)
+	label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 1))
+	label.text = _to_roman(level + 1)
+	if level >= weapon_data.upgrades.size() - 1:
+		label.add_theme_color_override("font_color", Color("#f5cf1d"))
+	else:
+		label.remove_theme_color_override("font_color")
+
+func _get_weapon_index(weapon_data: WeaponData) -> int:
+	for i in weapon_manager.active_weapons.size():
+		if weapon_manager.active_weapons[i].data == weapon_data:
+			return i
+	return -1
+
+func _refresh_all_weapon_labels() -> void:
+	for i in weapon_manager.active_weapons.size():
+		var w: BaseWeapon = weapon_manager.active_weapons[i]
+		_refresh_weapon_label(i, w.data, w.current_level)
 
 func _refresh_exp_bar():
 	var needed: int = leveling._required_blood(leveling.player_level + 1)

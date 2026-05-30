@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dd6nx5u3f3fxj"]
+
+[ext_resource type="Texture2D" uid="uid://bk7rj4m6nc53q" path="res://assets/weapons/divine_water.png" id="1_46bpi"]
+[ext_resource type="Script" uid="uid://hp4souuetdmb" path="res://scripts/weapons/weapon_data.gd" id="1_k8l68"]
+[ext_resource type="Script" uid="uid://dina5wfrgcftm" path="res://scripts/weapons/weapon_upgrade_data.gd" id="2_46bpi"]
+[ext_resource type="PackedScene" uid="uid://q14akf8ayicd" path="res://scenes/weapons/weapon_divine_water.tscn" id="4_ub3xs"]
+
+[sub_resource type="Resource" id="Resource_ub3xs"]
+script = ExtResource("2_46bpi")
+size_bonus = 0.3
+metadata/_custom_type_script = "uid://dina5wfrgcftm"
+
+[sub_resource type="Resource" id="Resource_138ct"]
+script = ExtResource("2_46bpi")
+damage_holy = 1
+metadata/_custom_type_script = "uid://dina5wfrgcftm"
+
+[sub_resource type="Resource" id="Resource_213fv"]
+script = ExtResource("2_46bpi")
+size_bonus = 0.3
+metadata/_custom_type_script = "uid://dina5wfrgcftm"
+
+[sub_resource type="Resource" id="Resource_6u7uq"]
+script = ExtResource("2_46bpi")
+damage_holy = 1
+metadata/_custom_type_script = "uid://dina5wfrgcftm"
+
+[sub_resource type="Resource" id="Resource_03alu"]
+script = ExtResource("2_46bpi")
+cooldown_multiplier = 0.9
+metadata/_custom_type_script = "uid://dina5wfrgcftm"
+
+[resource]
+script = ExtResource("1_k8l68")
+name = "Divine Water"
+base_damage_holy = 1
+base_cooldown = 0.5
+icon = ExtResource("1_46bpi")
+weapon_scene = ExtResource("4_ub3xs")
+upgrades = Array[ExtResource("2_46bpi")]([SubResource("Resource_ub3xs"), SubResource("Resource_138ct"), SubResource("Resource_213fv"), SubResource("Resource_6u7uq"), SubResource("Resource_03alu")])
+metadata/_custom_type_script = "uid://hp4souuetdmb"

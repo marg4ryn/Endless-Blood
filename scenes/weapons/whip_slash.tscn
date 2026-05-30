@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bdbk4dmfbh01k"]
 
 [ext_resource type="Script" uid="uid://dr8fp54m3b72g" path="res://scripts/attacks/whip_slash.gd" id="1_va785"]
-[ext_resource type="Texture2D" uid="uid://4yqx8nujhcgk" path="res://assets/attacks/slash.png" id="2_djx3l"]
+[ext_resource type="Texture2D" uid="uid://4yqx8nujhcgk" path="res://assets/attacks/Slash.png" id="2_djx3l"]
 [ext_resource type="AudioStream" uid="uid://b6bvbh7d4tpme" path="res://assets/sounds/swing.mp3" id="3_dw50n"]
 
 [sub_resource type="Animation" id="Animation_g3bgo"]

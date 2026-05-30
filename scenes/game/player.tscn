@@ -22,10 +22,10 @@
 [ext_resource type="Resource" uid="uid://6ef8heodht4k" path="res://data/items/killers_hand_data.tres" id="21_7omoa"]
 [ext_resource type="Resource" uid="uid://dt5x7umbx7djh" path="res://data/items/living_heart_data.tres" id="22_82g4i"]
 [ext_resource type="Resource" uid="uid://bf3atp02sd3gr" path="res://data/items/lucky_clover_data.tres" id="23_c411b"]
-[ext_resource type="Resource" uid="uid://pp2af4egpi5b" path="res://data/items/pocket_watch_data.tres" id="24_il6jt"]
-[ext_resource type="Resource" uid="uid://b5mvttv5dgft1" path="res://data/items/crimson_brooch_data.tres" id="25_8q4wn"]
+[ext_resource type="Script" uid="uid://hp4souuetdmb" path="res://scripts/weapons/weapon_data.gd" id="25_xfcrr"]
+[ext_resource type="Resource" uid="uid://02om5o3vpdgb" path="res://data/weapons/whip_data.tres" id="26_g8nad"]
 [ext_resource type="Resource" uid="uid://bc7yedjrnt15p" path="res://data/items/magnetic_stone_data.tres" id="26_i00hb"]
-[ext_resource type="Resource" uid="uid://cpbupyudonk5b" path="res://data/items/bloodshot_eyeball_data.tres" id="27_q1dp1"]
+[ext_resource type="Resource" uid="uid://dd6nx5u3f3fxj" path="res://data/weapons/divine_water.tres" id="27_fpvr6"]
 [ext_resource type="Script" uid="uid://c6ihn5a7s3o0y" path="res://scripts/ui/player_hud.gd" id="28_scvou"]
 [ext_resource type="FontFile" uid="uid://ch3oxkxxaq75j" path="res://assets/fonts/Gothikka.ttf" id="29_5vue8"]
 [ext_resource type="Texture2D" uid="uid://7v62mahm2sut" path="res://assets/ui/skull.png" id="30_j148u"]
@@ -38,7 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://dsoqnkd65nv28" path="res://assets/sounds/level_up.mp3" id="34_dbo1r"]
 [ext_resource type="Texture2D" uid="uid://bm30au8mjfc2f" path="res://addons/virtual_joystick/textures/joystick_base_outline.png" id="34_xfcrr"]
 [ext_resource type="Texture2D" uid="uid://dt13r06u87fib" path="res://addons/virtual_joystick/textures/joystick_tip_arrows.png" id="35_g8nad"]
-[ext_resource type="AudioStream" uid="uid://bjx0oak376d2l" path="res://assets/sounds/treasure.mp3" id="36_51fhs"]
+[ext_resource type="AudioStream" uid="uid://bjx0oak376d2l" path="res://assets/sounds/Treasure.mp3" id="36_51fhs"]
 [ext_resource type="Texture2D" uid="uid://cvk4260ljo7d4" path="res://assets/ui/pause.png" id="36_fpvr6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
@@ -214,7 +214,8 @@ script = ExtResource("9_g8nad")
 
 [node name="LevelManager" type="Node2D" parent="." unique_id=343121902]
 script = ExtResource("10_fpvr6")
-item_pool = Array[ExtResource("11_dhrtq")]([ExtResource("12_a6jc5"), ExtResource("13_iecro"), ExtResource("14_u5a7k"), ExtResource("15_j5i4e"), ExtResource("16_ubpfs"), ExtResource("18_hrdr4"), ExtResource("19_ttce3"), ExtResource("20_44276"), ExtResource("21_7omoa"), ExtResource("22_82g4i"), ExtResource("23_c411b"), ExtResource("24_il6jt"), ExtResource("25_8q4wn"), ExtResource("26_i00hb"), ExtResource("27_q1dp1")])
+item_pool = Array[ExtResource("11_dhrtq")]([ExtResource("12_a6jc5"), ExtResource("13_iecro"), ExtResource("14_u5a7k"), ExtResource("15_j5i4e"), ExtResource("16_ubpfs"), ExtResource("18_hrdr4"), ExtResource("19_ttce3"), ExtResource("20_44276"), ExtResource("21_7omoa"), ExtResource("22_82g4i"), ExtResource("23_c411b"), ExtResource("26_i00hb")])
+weapon_pool = Array[ExtResource("25_xfcrr")]([ExtResource("26_g8nad"), ExtResource("27_fpvr6")])
 
 [node name="PlayerHud" type="CanvasLayer" parent="." unique_id=70834009]
 script = ExtResource("28_scvou")
@@ -246,11 +247,47 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
+[node name="WeaponSlotLabel0" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer/WeaponSlot0" unique_id=502923878]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WeaponSlot1" type="Panel" parent="PlayerHud/EquipmentContainer/HBoxContainer" unique_id=1505614052]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="WeaponSlotLabel1" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer/WeaponSlot1" unique_id=1303236162]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WeaponSlot2" type="Panel" parent="PlayerHud/EquipmentContainer/HBoxContainer" unique_id=2055313502]
 unique_name_in_owner = true
@@ -258,11 +295,47 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
+[node name="WeaponSlotLabel2" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer/WeaponSlot2" unique_id=1940385235]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WeaponSlot3" type="Panel" parent="PlayerHud/EquipmentContainer/HBoxContainer" unique_id=1858133569]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="WeaponSlotLabel3" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer/WeaponSlot3" unique_id=1403588679]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PlayerHud/EquipmentContainer" unique_id=227153642]
 layout_mode = 2
@@ -276,6 +349,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
 [node name="ItemSlotLabel0" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot0" unique_id=2081277399]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -299,6 +373,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
 [node name="ItemSlotLabel1" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot1" unique_id=1393028233]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -322,6 +397,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
 [node name="ItemSlotLabel2" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot2" unique_id=1544731698]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -345,6 +421,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
 [node name="ItemSlotLabel3" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot3" unique_id=928578242]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -368,6 +445,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
 [node name="ItemSlotLabel4" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot4" unique_id=1481567547]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -391,6 +469,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
 [node name="ItemSlotLabel5" type="Label" parent="PlayerHud/EquipmentContainer/HBoxContainer2/ItemSlot5" unique_id=551293444]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -513,11 +592,47 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
+[node name="MobileWeaponSlotLabel0" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer/MobileWeaponSlot0" unique_id=1682479644]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MobileWeaponSlot1" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer" unique_id=1792363580]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileWeaponSlotLabel1" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer/MobileWeaponSlot1" unique_id=854680033]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MobileWeaponSlot2" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer" unique_id=879469100]
 unique_name_in_owner = true
@@ -525,11 +640,47 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
 
+[node name="MobileWeaponSlotLabel2" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer/MobileWeaponSlot2" unique_id=279523971]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MobileWeaponSlot3" type="Panel" parent="MobileHud/EquipmentContainer/HBoxContainer" unique_id=1016433926]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ydkj")
+
+[node name="MobileWeaponSlotLabel3" type="Label" parent="MobileHud/EquipmentContainer/HBoxContainer/MobileWeaponSlot3" unique_id=193365549]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("29_5vue8")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MobileHud/EquipmentContainer" unique_id=947445192]
 layout_mode = 2

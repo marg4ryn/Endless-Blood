@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://q14akf8ayicd"]
+
+[ext_resource type="Script" uid="uid://56bvu3wh6hgj" path="res://scripts/weapons/weapon_divine_water.gd" id="1_h8lx2"]
+[ext_resource type="PackedScene" uid="uid://dvvqgc8tyad26" path="res://scenes/weapons/aura.tscn" id="2_vbwtn"]
+
+[node name="WeaponDivineWater" type="Node2D" unique_id=496512297]
+script = ExtResource("1_h8lx2")
+
+[node name="Timer" type="Timer" parent="." unique_id=216565235]
+
+[node name="Aura" parent="." unique_id=1094999549 instance=ExtResource("2_vbwtn")]

@@ -24,13 +24,13 @@ func _ready() -> void:
 	_reset_ui()
 
 func play_opening(gold: int) -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	panel.visible = true
 	_reset_ui()
 	get_tree().paused = true
 	audio.play()
 	await _run_animation()
 	_show_reward(gold)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	submit_button.modulate.a = 1.0
 	submit_button.disabled = false
 	submit_button.grab_focus()

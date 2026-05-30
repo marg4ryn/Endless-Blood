@@ -80,12 +80,12 @@ func flash_red() -> void:
 func take_damage(attack: Attack) -> void:
 	if is_dead:
 		return
-	_show_damage_number(attack.damage)
-	health -= attack.damage
+	_show_damage_number(attack.total_damage())
+	health -= attack.total_damage()
 	_spawn_blood_hit()
 	flash_red()
 
-	if is_instance_valid(player):
+	if is_instance_valid(player) && attack.knockback > 0:
 		var knockback_dir := (global_position - player.global_position).normalized()
 		knockback_velocity = knockback_dir * knockback_speed
 		knockback_duration = 0.2
@@ -114,8 +114,8 @@ func attack() -> void:
 	if _player_in_range == null or not is_instance_valid(_player_in_range):
 		return
 	var atk := Attack.new()
-	atk.damage = damage
-	atk.position = global_position
+	atk.damage_physical = damage
+	atk.source_position = global_position
 	_player_in_range.get_parent().take_damage(atk)
 
 func _drop_xp_gems() -> void:

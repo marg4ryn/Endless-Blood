@@ -24,7 +24,7 @@ var is_dead := false
 var is_attacking := false
 var health := 0
 
-var base_max_health: int = 100
+var base_max_health: int = 20
 var base_speed: int = 200
 var base_luck: int = 0
 var base_hp_regen: int = 1
@@ -78,7 +78,7 @@ func _ready():
 	health_bar.max_value = max_health
 	
 	var whip_data = load("res://data/weapons/whip_data.tres")
-	weapon_manager.add_weapon(whip_data)
+	weapon_manager.add_or_upgrade_weapon(whip_data)
 	GameTimer.start()
 	
 func _physics_process(_delta):
@@ -111,7 +111,7 @@ func update_animation(direction: Vector2):
 func take_damage(attack: Attack):
 	if is_dead:
 		return
-	var damage: int = max(attack.damage - bonus_shield, 0)
+	var damage: int = max(attack.total_damage() - bonus_shield, 0)
 	if damage > 0:
 		health -= damage
 		health_bar.value = health

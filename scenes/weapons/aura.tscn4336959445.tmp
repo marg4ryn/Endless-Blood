@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dvvqgc8tyad26"]
+
+[ext_resource type="Script" uid="uid://d35r7qhd21jte" path="res://scripts/weapons/aura.gd" id="1_p4em1"]
+
+[node name="Aura" type="Node2D" unique_id=1094999549]
+script = ExtResource("1_p4em1")

@@ -57,13 +57,17 @@ func _on_level_up_ready(choices: Array[Dictionary]):
 
 		var u: Dictionary = choices[i]
 		var is_new: bool  = u.get("is_new", false)
+		var choice_type: String = u.get("type", "item")
 
 		name_labels[i].text = "%s %s" % [u["name"], _to_roman(u["level"])]
 		new_labels[i].text  = "NEW" if is_new else ""
 		new_labels[i].visible = is_new
-		stats_labels[i].text = _format_bonus(u["bonus_preview"])
-		icons[i].texture     = u["icon"]
+		icons[i].texture = u["icon"]
 
+		if choice_type == "item":
+			stats_labels[i].text = _format_bonus(u["bonus_preview"])
+		else:
+			stats_labels[i].text = _format_weapon_upgrade(u["upgrade_preview"], is_new, u["preview_stats"])
 	level_up_panel.visible = true
 	get_tree().paused = true
 	level_up_buttons[0].grab_focus()
@@ -114,6 +118,29 @@ func _format_bonus(bonus: ItemLevelData) -> String:
 	if bonus.physical_damage > 0:
 		parts.append("Physical Damage +%d" % bonus.physical_damage)
 	return "\n".join(parts)
+
+func _format_weapon_upgrade(upgrade: WeaponUpgradeData, is_new: bool, stats: WeaponStats) -> String:
+	if is_new:
+		var parts: Array[String] = []
+		if stats.damage_physical > 0:
+			parts.append("Physical Damage: %d" % stats.damage_physical)
+		if stats.damage_fire > 0:
+			parts.append("Fire Damage: %d" % stats.damage_fire)
+		if stats.damage_holy > 0:
+			parts.append("Holy Damage: %d" % stats.damage_holy)
+		return "\n".join(parts)
+
+	if upgrade.damage_physical > 0:
+		return "Physical Damage +%d" % upgrade.damage_physical
+	if upgrade.damage_fire > 0:
+		return "Fire Damage +%d" % upgrade.damage_fire
+	if upgrade.damage_holy > 0:
+		return "Holy Damage +%d" % upgrade.damage_holy
+	if upgrade.cooldown_multiplier != 1.0:
+		return "Attack Speed +%.0f%%" % [(1.0 - upgrade.cooldown_multiplier) * 100]
+	if upgrade.size_bonus != 0.0:
+		return "Size +%.0f%%" % [(upgrade.size_bonus) * 100]
+	return ""
 
 func _to_roman(n: int) -> String:
 	var romans := ["I", "II", "III", "IV", "V"]
