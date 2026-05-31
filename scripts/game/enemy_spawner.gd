@@ -51,6 +51,8 @@ func _on_timer_timeout() -> void:
 	if entry:
 		var count := randi_range(entry.group_min, entry.group_max)
 		var base_pos := _get_spawn_position(player)
+		if base_pos == Vector2.ZERO:
+			return
 		for i in range(count):
 			_spawn_one(entry.scene, base_pos, i, count)
 		_update_spawn_rate()
@@ -85,15 +87,23 @@ func _get_spawn_position(player: Node2D) -> Vector2:
 	return Vector2.ZERO
 
 func _spawn_one(scene, base_pos, idx, total):
+	if base_pos == Vector2.ZERO:
+		return
 	var enemy = _get_from_pool(scene)
 	var offset := Vector2.ZERO
 	if total > 1:
 		var angle: float = (idx / float(total)) * TAU
 		offset = Vector2(cos(angle), sin(angle)) * 50.0
 		offset += Vector2(randf_range(-10, 10), randf_range(-10, 10))
+	
+	var player := get_tree().get_first_node_in_group("player")
 	enemy.global_position = base_pos + offset
-	enemy.visible = true
 	enemy.process_mode = Node.PROCESS_MODE_INHERIT
+	await get_tree().create_timer(0.1).timeout
+	enemy.get_node("Collision").set_deferred("disabled", false)
+	enemy.get_node("HurtboxArea").monitoring = true
+	enemy.get_node("HurtboxArea").monitorable = true
+	enemy.visible = true
 
 func _update_spawn_rate() -> void:
 	var t: float = GameTimer.elapsed - _time_offset
@@ -107,6 +117,7 @@ func _get_from_pool(scene: PackedScene) -> Node:
 			_reset_enemy(enemy)
 			return enemy
 	var enemy = scene.instantiate()
+	enemy.get_node("Collision").disabled = true
 	add_child(enemy)
 	_pool.append(enemy)
 	_reset_enemy(enemy)
@@ -114,11 +125,11 @@ func _get_from_pool(scene: PackedScene) -> Node:
 
 func _reset_enemy(enemy: Node) -> void:
 	enemy.is_dead = false
-	enemy.visible = true
-	enemy.process_mode = Node.PROCESS_MODE_INHERIT
-	enemy.get_node("HurtboxArea").monitoring = true
-	enemy.get_node("HurtboxArea").monitorable = true
-	enemy.get_node("Collision").set_deferred("disabled", false)
+	enemy.visible = false
+	enemy.process_mode = Node.PROCESS_MODE_DISABLED
+	enemy.get_node("HurtboxArea").monitoring = false
+	enemy.get_node("HurtboxArea").monitorable = false
+	enemy.get_node("Collision").set_deferred("disabled", true)
 	enemy.health = enemy.max_health
 
 func _get_active_count() -> int:
