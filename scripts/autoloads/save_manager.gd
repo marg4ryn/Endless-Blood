@@ -4,7 +4,7 @@ signal stats_changed
 signal gold_changed
 
 var gold: int = 0
-var upgrade_cost: int = 50
+var upgrade_cost: int = 20
 var best_time: float = 0.0
 var best_kills: int = 0
 var tutorial_seen: bool = false
@@ -65,7 +65,7 @@ func upgrade_hero_stat(hero_index: int, stat: String) -> bool:
 	if current_level >= 10:
 		return false
 	gold -= upgrade_cost
-	upgrade_cost += 10
+	upgrade_cost += 2
 	heroes[hero_index][level_key] = current_level + 1
 	stats_changed.emit()
 	gold_changed.emit()
@@ -86,7 +86,7 @@ func _ensure_hero_slots() -> void:
 
 func reset_save() -> void:
 	gold = 2000
-	upgrade_cost = 50
+	upgrade_cost = 20
 	best_time = 0.0
 	best_kills = 0
 	tutorial_seen = false

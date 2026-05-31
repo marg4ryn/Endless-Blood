@@ -74,11 +74,8 @@ func _ready():
 	base_speed      = SaveManager.get_stat(i, "speed", h.speed)
 	base_luck       = SaveManager.get_stat(i, "luck", h.luck)
 	sprite.sprite_frames = h.sprite_frames
-	# Stabilize sprite origin so frames don't appear to jump
 	sprite.centered = true
-	# compute per-frame offsets to keep the character visually stable
 	_compute_frame_offsets()
-	# apply offsets when frame changes
 	sprite.connect("frame_changed", Callable(self, "_on_sprite_frame_changed"))
 	_on_sprite_frame_changed()
 	
@@ -120,7 +117,6 @@ func update_animation(direction: Vector2):
 
 	if sprite.animation != target_animation:
 		sprite.play(target_animation)
-		# ensure offset for newly played animation/frame is applied
 		_on_sprite_frame_changed()
 
 func _compute_frame_offsets() -> void:
@@ -146,7 +142,6 @@ func _compute_frame_offsets() -> void:
 					elif atlas.has_method("decompress_to_image"):
 						img = atlas.decompress_to_image()
 					if img == null:
-						# cannot read pixels from this texture type; skip offset calc
 						_frame_offsets[anim].append(offset_vec)
 						continue
 					if img.has_method("lock"):
@@ -155,7 +150,6 @@ func _compute_frame_offsets() -> void:
 					var ry: int = int(region.position.y)
 					var rw: int = int(region.size.x)
 					var rh: int = int(region.size.y)
-					# clamp sampling rectangle to actual image bounds
 					var img_w: int = img.get_width()
 					var img_h: int = img.get_height()
 					var start_x: int = clamp(rx, 0, img_w)
@@ -163,7 +157,6 @@ func _compute_frame_offsets() -> void:
 					var end_x: int = clamp(rx + rw, 0, img_w)
 					var end_y: int = clamp(ry + rh, 0, img_h)
 					if start_x >= end_x or start_y >= end_y:
-						# invalid or empty region inside atlas — skip
 						_frame_offsets[anim].append(offset_vec)
 						img.unlock()
 						continue

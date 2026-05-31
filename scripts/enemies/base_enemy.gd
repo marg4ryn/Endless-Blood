@@ -16,7 +16,7 @@ const BLOOD_TEXTURES: Array[Texture2D] = [
 ]
 
 const CHEST_DROP_BASE := 0.001
-const CHEST_DROP_PER_LUCK := 0.0015
+const CHEST_DROP_PER_LUCK := 0.0005
 const CHEST_DROP_MAX := 0.01
 
 var speed := 100.0

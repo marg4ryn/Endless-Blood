@@ -41,3 +41,8 @@ func _update_animation(dir: Vector2) -> void:
 	sprite.flip_h = dir.x < 0
 	if sprite.animation != &"walk":
 		sprite.play("walk")
+
+func flash_red():
+	sprite.modulate = Color(1, 0.3, 0.3)
+	await get_tree().create_timer(0.2).timeout
+	sprite.modulate = Color(1, 1, 1) 

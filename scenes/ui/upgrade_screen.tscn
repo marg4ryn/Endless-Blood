@@ -112,22 +112,22 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0mgnl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1865480506]
-custom_minimum_size = Vector2(760, 860)
+custom_minimum_size = Vector2(700, 560)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -380.0
-offset_top = -360.0
-offset_right = 380.0
-offset_bottom = 480.0
+offset_left = -350.0
+offset_top = -331.5
+offset_right = 350.0
+offset_bottom = 331.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=969885505]
-custom_minimum_size = Vector2(760, 60)
+custom_minimum_size = Vector2(700, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1fj2j")
 theme_override_font_sizes/font_size = 45
@@ -137,6 +137,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=2093451613]
+custom_minimum_size = Vector2(0, 470)
 layout_mode = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 24
@@ -147,7 +148,7 @@ theme_override_constants/separation = 28
 alignment = 1
 
 [node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=1509315739]
-custom_minimum_size = Vector2(320, 560)
+custom_minimum_size = Vector2(320, 510)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f2wp6")
 
@@ -175,8 +176,8 @@ layout_mode = 2
 stretch_mode = 5
 
 [node name="Spacer" type="Control" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=200000002]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1475766007]
 layout_mode = 2
@@ -326,7 +327,7 @@ text = "+1"
 
 [node name="GwenPanel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=220000012]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 560)
+custom_minimum_size = Vector2(320, 490)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f2wp6")
 
@@ -354,8 +355,8 @@ layout_mode = 2
 stretch_mode = 5
 
 [node name="GwenSpacer" type="Control" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer" unique_id=220000016]
-layout_mode = 2
 custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer" unique_id=220000017]
 layout_mode = 2
@@ -424,7 +425,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_giv8v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_giv8v")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_to70l")
 theme_override_styles/focus = SubResource("StyleBoxFlat_giv8v")
-text = "+4"
+text = "+2"
 
 [node name="SpeedContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer" unique_id=220000026]
 layout_mode = 2
@@ -462,7 +463,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_giv8v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_giv8v")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_to70l")
 theme_override_styles/focus = SubResource("StyleBoxFlat_giv8v")
-text = "+3"
+text = "+2"
 
 [node name="LuckContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/GwenPanel/VBoxContainer/StatsContainer" unique_id=220000030]
 layout_mode = 2
@@ -507,7 +508,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(266, 40)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/margin_top = 28
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)

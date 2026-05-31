@@ -1440,6 +1440,7 @@ unique_name_in_owner = true
 stream = ExtResource("36_51fhs")
 
 [node name="HealTimer" type="Timer" parent="." unique_id=229005779]
+wait_time = 2.0
 autostart = true
 
 [connection signal="pressed" from="MobileHud/PauseButton" to="MobileHud" method="_on_pause_button_pressed"]

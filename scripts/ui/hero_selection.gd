@@ -17,20 +17,16 @@ var _selected_index: int = 0
 
 func _ready() -> void:
 	heroes = SaveManager.all_heroes
-	ButtonManager.setup_buttons([select_gwen_button, select_blood_hunter_button, play_button, back_button])
-	_selected_index = _index_for_hero_name("Gwen")
-	if _selected_index < 0:
-		_selected_index = 0
+	ButtonManager.setup_buttons([select_blood_hunter_button, select_gwen_button, play_button, back_button])
+	_selected_index = 0
 	_update_cards()
 	play_button.grab_focus()
 	
-
 func _index_for_hero_name(hero_name: String) -> int:
 	for i in range(heroes.size()):
 		if heroes[i].hero_name == hero_name:
 			return i
 	return -1
-
 
 func _apply_selection(index: int) -> void:
 	if heroes.is_empty():
@@ -39,7 +35,6 @@ func _apply_selection(index: int) -> void:
 	SaveManager.selected_hero = heroes[_selected_index]
 	SaveManager.selected_hero_index = _selected_index
 	_update_cards()
-
 
 func _update_cards() -> void:
 	if heroes.is_empty():
@@ -64,7 +59,6 @@ func _update_cards() -> void:
 	select_gwen_button.text = "Selected" if gwen_selected else "Select"
 	select_blood_hunter_button.text = "Selected" if blood_selected else "Select"
 
-
 func _on_play_button_pressed() -> void:
 	if heroes.is_empty():
 		return
@@ -72,12 +66,10 @@ func _on_play_button_pressed() -> void:
 	SaveManager.selected_hero_index = _selected_index
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 
-
 func _on_select_gwen_pressed() -> void:
 	var index := _index_for_hero_name("Gwen")
 	if index != -1:
 		_apply_selection(index)
-
 
 func _on_select_blood_hunter_pressed() -> void:
 	var index := _index_for_hero_name("Blood Hunter")

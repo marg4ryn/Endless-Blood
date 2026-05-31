@@ -59,9 +59,6 @@ func _update_hero_panel(hero_name: String, icon: TextureRect, name_label: Label,
 	if gold_label != null:
 		gold_label.text = str(SaveManager.gold)
 	cost_label.text = "COST: %d" % SaveManager.upgrade_cost
-	health_button.text = "+4"
-	speed_button.text = "+3"
-	luck_button.text = "+1"
 	health_label.text = "HEALTH: %d" % SaveManager.get_stat(index, "max_health", hero.max_health)
 	speed_label.text = "SPEED: %d" % SaveManager.get_stat(index, "speed", hero.speed)
 	luck_label.text = "LUCK: %d" % SaveManager.get_stat(index, "luck", hero.luck)

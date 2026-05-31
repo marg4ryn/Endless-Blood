@@ -7,10 +7,10 @@ const TUTORIAL_TEXT_COLOR := Color(1.0, 0.95, 0.95, 1.0)
 const TUTORIAL_MUTED_COLOR := Color(0.9, 0.7, 0.7, 1.0)
 
 const TUTORIAL_STEPS := [
-	{"title": "Krok 1", "body": "Przytrzymaj [←] albo [A], żeby ruszyć w lewo.", "action": &"move_left", "icon": "←"},
-	{"title": "Krok 2", "body": "Przytrzymaj [→] albo [D], żeby ruszyć w prawo.", "action": &"move_right", "icon": "→"},
-	{"title": "Krok 3", "body": "Przytrzymaj [↑] albo [W], żeby iść w górę.", "action": &"move_up", "icon": "↑"},
-	{"title": "Krok 4", "body": "Przytrzymaj [↓] albo [S], żeby zejść niżej.", "action": &"move_down", "icon": "↓"},
+	{"body": "Hold [←] or [A] to move left", "action": &"move_left", "icon": "←"},
+	{"body": "Hold [→] or [D] to move right", "action": &"move_right", "icon": "→"},
+	{"body": "Hold [↑] or [W] to move up", "action": &"move_up", "icon": "↑"},
+	{"body": "Hold [↓] or [S] to move down", "action": &"move_down", "icon": "↓"},
 ]
 
 const TRACKS = [
@@ -48,7 +48,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_gold_timer_timeout() -> void:
 	$Player.gain_gold()
 
-
 func _start_first_run_tutorial() -> void:
 	_tutorial_active = true
 	_tutorial_layer = CanvasLayer.new()
@@ -65,7 +64,7 @@ func _start_first_run_tutorial() -> void:
 	_tutorial_banner.offset_left = 0
 	_tutorial_banner.offset_top = 18
 	_tutorial_banner.offset_right = 0
-	_tutorial_banner.offset_bottom = 156
+	_tutorial_banner.offset_bottom = 120
 	_tutorial_banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_tutorial_root.add_child(_tutorial_banner)
 
@@ -82,63 +81,30 @@ func _start_first_run_tutorial() -> void:
 	style.corner_radius_top_right = 10
 	_tutorial_banner.add_theme_stylebox_override("panel", style)
 
-	_tutorial_content = Control.new()
+	_tutorial_content = VBoxContainer.new()
 	_tutorial_content.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_tutorial_content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_tutorial_content.offset_left = 20
+	_tutorial_content.offset_top = 12
+	_tutorial_content.offset_right = -20
+	_tutorial_content.offset_bottom = -12
+	_tutorial_content.add_theme_constant_override("separation", 8)
 	_tutorial_banner.add_child(_tutorial_content)
 
 	_tutorial_step_label = Label.new()
-	_tutorial_step_label.anchor_left = 0.0
-	_tutorial_step_label.anchor_top = 0.0
-	_tutorial_step_label.anchor_right = 1.0
-	_tutorial_step_label.anchor_bottom = 0.0
-	_tutorial_step_label.offset_left = 0
-	_tutorial_step_label.offset_top = 6
-	_tutorial_step_label.offset_right = 0
-	_tutorial_step_label.offset_bottom = 24
 	_tutorial_step_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_tutorial_step_label.add_theme_font_size_override("font_size", 16)
 	_tutorial_step_label.add_theme_color_override("font_color", TUTORIAL_ACCENT_COLOR)
 	_tutorial_content.add_child(_tutorial_step_label)
 
-	_tutorial_title = Label.new()
-	_tutorial_title.anchor_left = 0.0
-	_tutorial_title.anchor_top = 0.0
-	_tutorial_title.anchor_right = 1.0
-	_tutorial_title.anchor_bottom = 0.0
-	_tutorial_title.offset_left = 0
-	_tutorial_title.offset_top = 28
-	_tutorial_title.offset_right = 0
-	_tutorial_title.offset_bottom = 58
-	_tutorial_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_tutorial_title.add_theme_font_size_override("font_size", 26)
-	_tutorial_title.add_theme_color_override("font_color", TUTORIAL_TEXT_COLOR)
-	_tutorial_content.add_child(_tutorial_title)
-
 	_tutorial_body = Label.new()
-	_tutorial_body.anchor_left = 0.0
-	_tutorial_body.anchor_top = 0.0
-	_tutorial_body.anchor_right = 1.0
-	_tutorial_body.anchor_bottom = 0.0
-	_tutorial_body.offset_left = 32
-	_tutorial_body.offset_top = 66
-	_tutorial_body.offset_right = -32
-	_tutorial_body.offset_bottom = 108
 	_tutorial_body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_tutorial_body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_tutorial_body.add_theme_font_size_override("font_size", 20)
 	_tutorial_body.add_theme_color_override("font_color", TUTORIAL_TEXT_COLOR)
+	_tutorial_body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_tutorial_content.add_child(_tutorial_body)
 
 	_tutorial_progress_label = Label.new()
-	_tutorial_progress_label.anchor_left = 0.0
-	_tutorial_progress_label.anchor_top = 0.0
-	_tutorial_progress_label.anchor_right = 1.0
-	_tutorial_progress_label.anchor_bottom = 0.0
-	_tutorial_progress_label.offset_left = 24
-	_tutorial_progress_label.offset_top = 112
-	_tutorial_progress_label.offset_right = -24
-	_tutorial_progress_label.offset_bottom = 138
 	_tutorial_progress_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_tutorial_progress_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_tutorial_progress_label.add_theme_font_size_override("font_size", 14)
@@ -150,18 +116,15 @@ func _start_first_run_tutorial() -> void:
 
 	_set_tutorial_step(0)
 
-
 func _set_tutorial_step(step_index: int) -> void:
 	_tutorial_step_index = step_index
 	if _tutorial_step_index < 0 or _tutorial_step_index >= TUTORIAL_STEPS.size():
 		_complete_first_run_tutorial()
 		return
 	var step: Dictionary = TUTORIAL_STEPS[_tutorial_step_index]
-	_tutorial_step_label.text = "KROK %d/%d" % [_tutorial_step_index + 1, TUTORIAL_STEPS.size()]
-	_tutorial_title.text = step.get("title", "")
+	_tutorial_step_label.text = "Step %d/%d" % [_tutorial_step_index + 1, TUTORIAL_STEPS.size()]
 	_tutorial_body.text = step.get("body", "")
-	_tutorial_progress_label.text = "Wykonaj ruch, aby przejść dalej"
-
+	_tutorial_progress_label.text = "Make a move to continue"
 
 func _handle_tutorial_input(event: InputEvent) -> bool:
 	if _tutorial_step_index < 0 or _tutorial_step_index >= TUTORIAL_STEPS.size():
@@ -172,12 +135,12 @@ func _handle_tutorial_input(event: InputEvent) -> bool:
 		return true
 	return false
 
-
 func _complete_first_run_tutorial() -> void:
 	SaveManager.mark_tutorial_seen()
 	if _tutorial_banner == null:
 		return
-	_tutorial_progress_label.text = "Gotowe. Powodzenia."
-	_tutorial_body.text = "Możesz już ruszać dalej."
+	_tutorial_body.text = "Done. Good luck"
+	_tutorial_progress_label.text = "You can now continue"
+	await get_tree().create_timer(3.0).timeout
 	_tutorial_layer.queue_free()
 	_tutorial_active = false
