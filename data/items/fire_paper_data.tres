@@ -6,37 +6,25 @@
 
 [sub_resource type="Resource" id="Resource_jlnm3"]
 script = ExtResource("1_s36jn")
-item_id = 5
-fire_damage = 2
+item_id = 2
+fire_damage = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_4x01u"]
 script = ExtResource("1_s36jn")
-item_id = 5
-fire_damage = 4
+item_id = 2
+fire_damage = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_afuqi"]
 script = ExtResource("1_s36jn")
-item_id = 5
-fire_damage = 6
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_6ttv2"]
-script = ExtResource("1_s36jn")
-item_id = 5
-fire_damage = 8
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_lurvp"]
-script = ExtResource("1_s36jn")
-item_id = 5
-fire_damage = 10
+item_id = 2
+fire_damage = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [resource]
 script = ExtResource("2_s36jn")
 name = "Fire Paper"
 icon = ExtResource("2_888cw")
-bonuses = Array[ExtResource("1_s36jn")]([SubResource("Resource_jlnm3"), SubResource("Resource_4x01u"), SubResource("Resource_afuqi"), SubResource("Resource_6ttv2"), SubResource("Resource_lurvp")])
+bonuses = Array[ExtResource("1_s36jn")]([SubResource("Resource_jlnm3"), SubResource("Resource_4x01u"), SubResource("Resource_afuqi")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

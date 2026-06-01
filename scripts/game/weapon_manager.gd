@@ -4,6 +4,7 @@ extends Node
 signal weapon_added(weapon_data: WeaponData)
 signal weapon_upgraded(weapon_data: WeaponData, new_level: int)
 signal item_added(item_data: ItemData)
+signal item_upgraded(item_data: ItemData)
 
 const MAX_WEAPONS = 4
 const MAX_ITEMS = 6
@@ -33,6 +34,7 @@ func add_or_upgrade_weapon(weapon_data: WeaponData) -> bool:
 
 func add_item(item_data: ItemData) -> bool:
 	if active_items.has(item_data):
+		item_upgraded.emit(item_data)
 		return false
 	if active_items.size() >= MAX_ITEMS:
 		return false

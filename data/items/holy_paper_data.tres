@@ -6,37 +6,25 @@
 
 [sub_resource type="Resource" id="Resource_exmlb"]
 script = ExtResource("1_8vqdy")
-item_id = 7
-holy_damage = 2
+item_id = 4
+holy_damage = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_vk8ec"]
 script = ExtResource("1_8vqdy")
-item_id = 7
-holy_damage = 4
+item_id = 4
+holy_damage = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_b5gxc"]
 script = ExtResource("1_8vqdy")
-item_id = 7
-holy_damage = 6
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_nmpk4"]
-script = ExtResource("1_8vqdy")
-item_id = 7
-holy_damage = 8
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_kvoqp"]
-script = ExtResource("1_8vqdy")
-item_id = 7
-holy_damage = 10
+item_id = 4
+holy_damage = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [resource]
 script = ExtResource("2_8vqdy")
 name = "Holy Paper"
 icon = ExtResource("2_7voih")
-bonuses = Array[ExtResource("1_8vqdy")]([SubResource("Resource_exmlb"), SubResource("Resource_vk8ec"), SubResource("Resource_b5gxc"), SubResource("Resource_nmpk4"), SubResource("Resource_kvoqp")])
+bonuses = Array[ExtResource("1_8vqdy")]([SubResource("Resource_exmlb"), SubResource("Resource_vk8ec"), SubResource("Resource_b5gxc")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

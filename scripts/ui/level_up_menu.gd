@@ -36,7 +36,7 @@ func _on_level_up_ready(choices: Array[Dictionary]):
 	audioPlayer.play()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_current_choices = choices
-	level_title.text = "LEVEL %d → %d" % [leveling.player_level, leveling.player_level + 1]
+	level_title.text = "LEVEL %d -> %d" % [leveling.player_level, leveling.player_level + 1]
 
 	if choices.is_empty():
 		level_up_panel.visible = false
@@ -87,18 +87,14 @@ func _on_pass_pressed():
 func _format_bonus(bonus: ItemLevelData) -> String:
 	var parts: Array[String] = []
 
-	if bonus.xp_gain > 0:
-		parts.append("XP Gain +%d" % bonus.xp_gain)
 	if bonus.gold_gain > 0:
 		parts.append("Gold Gain +%d" % bonus.gold_gain)
 	if bonus.pickup_range > 0:
 		parts.append("Pickup Range +%d" % bonus.pickup_range)
-	if bonus.effect_duration > 0:
-		parts.append("Effect Duration +%d" % bonus.effect_duration)
 	if bonus.luck > 0:
 		parts.append("Luck +%d" % bonus.luck)
 	if bonus.attack_size > 0:
-		parts.append("Attack Size +%d" % bonus.attack_size)
+		parts.append("Attack Size +%d%%" % (bonus.attack_size))
 	if bonus.shield > 0:
 		parts.append("Shield +%d" % bonus.shield)
 	if bonus.move_speed > 0:
@@ -108,9 +104,7 @@ func _format_bonus(bonus: ItemLevelData) -> String:
 	if bonus.hp_regen > 0:
 		parts.append("HP Regen +%d" % bonus.hp_regen)
 	if bonus.attack_speed > 0:
-		parts.append("Attack Speed +%d" % bonus.attack_speed)
-	if bonus.projectile_count > 0:
-		parts.append("Projectile Count +%d" % bonus.projectile_count)
+		parts.append("Attack Speed +%d%%" % bonus.attack_speed)
 	if bonus.holy_damage > 0:
 		parts.append("Holy Damage +%d" % bonus.holy_damage)
 	if bonus.fire_damage > 0:

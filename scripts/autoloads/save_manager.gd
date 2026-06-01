@@ -85,7 +85,7 @@ func _ensure_hero_slots() -> void:
 		selected_hero_index = 0
 
 func reset_save() -> void:
-	gold = 2000
+	gold = 200
 	upgrade_cost = 20
 	best_time = 0.0
 	best_kills = 0

@@ -11,6 +11,6 @@ func _do_attack() -> void:
 	attack.source_position = player.global_position
 	slash.attack = attack
 	slash.global_position = player.global_position + Vector2(dir, 0) * reach
-	slash.scale = Vector2.ONE * stats.size
+	slash.scale = Vector2.ONE * (stats.size + (player.bonus_attack_size / 100.0))
 	slash.rotation = 0.0 if dir > 0 else PI
 	get_tree().current_scene.add_child(slash)

@@ -4,34 +4,24 @@
 [ext_resource type="Script" uid="uid://c87n8phc0rbrv" path="res://scripts/items/item_data.gd" id="2_5e8xl"]
 [ext_resource type="Texture2D" uid="uid://dex3x7lafn173" path="res://assets/items/beast_paper.png" id="2_m5jfs"]
 
+[sub_resource type="Resource" id="Resource_5e8xl"]
+script = ExtResource("1_5e8xl")
+physical_damage = 1
+metadata/_custom_type_script = "uid://br4dsciwujuog"
+
+[sub_resource type="Resource" id="Resource_m5jfs"]
+script = ExtResource("1_5e8xl")
+physical_damage = 1
+metadata/_custom_type_script = "uid://br4dsciwujuog"
+
 [sub_resource type="Resource" id="Resource_7en25"]
 script = ExtResource("1_5e8xl")
-physical_damage = 2
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_uo56j"]
-script = ExtResource("1_5e8xl")
-physical_damage = 4
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_4062q"]
-script = ExtResource("1_5e8xl")
-physical_damage = 6
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_p20iv"]
-script = ExtResource("1_5e8xl")
-physical_damage = 8
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_3fywl"]
-script = ExtResource("1_5e8xl")
-physical_damage = 10
+physical_damage = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [resource]
 script = ExtResource("2_5e8xl")
 name = "Beast Paper"
 icon = ExtResource("2_m5jfs")
-bonuses = Array[ExtResource("1_5e8xl")]([SubResource("Resource_7en25"), SubResource("Resource_uo56j"), SubResource("Resource_4062q"), SubResource("Resource_p20iv"), SubResource("Resource_3fywl")])
+bonuses = Array[ExtResource("1_5e8xl")]([SubResource("Resource_5e8xl"), SubResource("Resource_m5jfs"), SubResource("Resource_7en25")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

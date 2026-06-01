@@ -13,7 +13,9 @@ func setup(weapon_data: WeaponData, player_node: Node2D) -> void:
 	data = weapon_data
 	player = player_node
 	_rebuild_stats()
-	timer.wait_time = stats.cooldown
+	get_parent().item_added.connect(_on_item_added_or_upgraded)
+	get_parent().item_upgraded.connect(_on_item_added_or_upgraded)
+	update_timer()
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
 
@@ -22,7 +24,7 @@ func upgrade() -> bool:
 		return false
 	current_level += 1
 	_rebuild_stats()
-	timer.wait_time = stats.cooldown
+	update_timer()
 	return true
 
 func _rebuild_stats() -> void:
@@ -37,10 +39,16 @@ func _do_attack() -> void:
 func make_attack() -> Attack:
 	var a := Attack.new()
 	a.knockback = stats.knockback 
-	a.damage_physical = stats.damage_physical
-	a.damage_fire = stats.damage_fire
-	a.damage_holy = stats.damage_holy
+	a.damage_physical = stats.damage_physical + player.bonus_physical_damage
+	a.damage_fire = stats.damage_fire + player.bonus_fire_damage
+	a.damage_holy = stats.damage_holy + player.bonus_holy_damage
 	return a
+
+func update_timer():
+	timer.wait_time = stats.cooldown - ( player.bonus_attack_speed / 100.0)
+
+func _on_item_added_or_upgraded(_item_data) -> void:
+	update_timer()
 
 func get_enemies_sorted_by_distance() -> Array[Node2D]:
 	var enemies: Array[Node2D] = []

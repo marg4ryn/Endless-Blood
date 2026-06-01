@@ -6,37 +6,25 @@
 
 [sub_resource type="Resource" id="Resource_f2mix"]
 script = ExtResource("1_0siug")
-item_id = 8
-move_speed = 3
+item_id = 5
+move_speed = 10
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_ur2ar"]
 script = ExtResource("1_0siug")
-item_id = 8
-move_speed = 6
+item_id = 5
+move_speed = 10
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_dwio1"]
 script = ExtResource("1_0siug")
-item_id = 8
-move_speed = 9
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_yx6r7"]
-script = ExtResource("1_0siug")
-item_id = 8
-move_speed = 12
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_7kqkj"]
-script = ExtResource("1_0siug")
-item_id = 8
-move_speed = 15
+item_id = 5
+move_speed = 10
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [resource]
 script = ExtResource("2_0siug")
 name = "Hunter Bone"
 icon = ExtResource("2_jj5cy")
-bonuses = Array[ExtResource("1_0siug")]([SubResource("Resource_f2mix"), SubResource("Resource_ur2ar"), SubResource("Resource_dwio1"), SubResource("Resource_yx6r7"), SubResource("Resource_7kqkj")])
+bonuses = Array[ExtResource("1_0siug")]([SubResource("Resource_f2mix"), SubResource("Resource_ur2ar"), SubResource("Resource_dwio1")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

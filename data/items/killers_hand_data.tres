@@ -6,31 +6,19 @@
 
 [sub_resource type="Resource" id="Resource_bs0k7"]
 script = ExtResource("1_25fn5")
-item_id = 9
-attack_speed = 1
+item_id = 6
+attack_speed = 5
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_gobh7"]
 script = ExtResource("1_25fn5")
-item_id = 9
-attack_speed = 2
+item_id = 6
+attack_speed = 5
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_rmrsm"]
 script = ExtResource("1_25fn5")
-item_id = 9
-attack_speed = 3
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_ucfk2"]
-script = ExtResource("1_25fn5")
-item_id = 9
-attack_speed = 4
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_betai"]
-script = ExtResource("1_25fn5")
-item_id = 9
+item_id = 6
 attack_speed = 5
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
@@ -38,5 +26,5 @@ metadata/_custom_type_script = "uid://br4dsciwujuog"
 script = ExtResource("2_25fn5")
 name = "Killer's Hand"
 icon = ExtResource("2_nqdia")
-bonuses = Array[ExtResource("1_25fn5")]([SubResource("Resource_bs0k7"), SubResource("Resource_gobh7"), SubResource("Resource_rmrsm"), SubResource("Resource_ucfk2"), SubResource("Resource_betai")])
+bonuses = Array[ExtResource("1_25fn5")]([SubResource("Resource_bs0k7"), SubResource("Resource_gobh7"), SubResource("Resource_rmrsm")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

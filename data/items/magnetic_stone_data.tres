@@ -6,37 +6,25 @@
 
 [sub_resource type="Resource" id="Resource_316i4"]
 script = ExtResource("1_s5ekn")
-item_id = 13
-pickup_range = 20
+item_id = 10
+pickup_range = 25
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_1dbct"]
 script = ExtResource("1_s5ekn")
-item_id = 13
-pickup_range = 40
+item_id = 10
+pickup_range = 25
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_5wiix"]
 script = ExtResource("1_s5ekn")
-item_id = 13
-pickup_range = 60
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_7wr1s"]
-script = ExtResource("1_s5ekn")
-item_id = 13
-pickup_range = 80
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_hvca1"]
-script = ExtResource("1_s5ekn")
-item_id = 13
-pickup_range = 100
+item_id = 10
+pickup_range = 25
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [resource]
 script = ExtResource("2_s5ekn")
 name = "Magnetic Stone"
 icon = ExtResource("2_cyc8g")
-bonuses = Array[ExtResource("1_s5ekn")]([SubResource("Resource_316i4"), SubResource("Resource_1dbct"), SubResource("Resource_5wiix"), SubResource("Resource_7wr1s"), SubResource("Resource_hvca1")])
+bonuses = Array[ExtResource("1_s5ekn")]([SubResource("Resource_316i4"), SubResource("Resource_1dbct"), SubResource("Resource_5wiix")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

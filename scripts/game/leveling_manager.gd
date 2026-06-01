@@ -62,8 +62,7 @@ func _apply_item_choice(choice: Dictionary):
 	var current_level: int = item_levels.get(item, 0)
 	var next_level := current_level + 1
 	item_levels[item] = next_level
-	if current_level == 0:
-		weapon_manager.add_item(item)
+	weapon_manager.add_item(item)
 	var bonus: ItemLevelData = item.bonuses[next_level - 1]
 	player.apply_bonus(bonus)
 

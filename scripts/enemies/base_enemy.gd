@@ -16,8 +16,8 @@ const BLOOD_TEXTURES: Array[Texture2D] = [
 ]
 
 const CHEST_DROP_BASE := 0.001
-const CHEST_DROP_PER_LUCK := 0.0005
-const CHEST_DROP_MAX := 0.01
+const CHEST_DROP_PER_LUCK := 0.001
+const CHEST_DROP_MAX := 0.02
 
 var speed := 100.0
 var max_health := 100
@@ -128,17 +128,20 @@ func _drop_xp_gems() -> void:
 	_spawn_gem(gem_type)
 
 func _roll_gem_type() -> XpGem.Type:
+	var luck: int = int(player.get("luck")) if is_instance_valid(player) else 0
 	var total_weight := 0
 	for entry in xp_gem_table:
-		total_weight += entry[1]
-
+		var weight = entry[1]
+		var index = xp_gem_table.find(entry)
+		weight += index * luck
+		total_weight += weight
 	var roll := randi_range(0, total_weight - 1)
 	var cumulative := 0
 	for entry in xp_gem_table:
-		cumulative += entry[1]
+		var index = xp_gem_table.find(entry)
+		cumulative += entry[1] + index * luck
 		if roll < cumulative:
 			return entry[0]
-
 	return xp_gem_table[0][0]
 
 func _spawn_gem(gem_type: XpGem.Type) -> void:

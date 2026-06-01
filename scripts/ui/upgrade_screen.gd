@@ -46,7 +46,7 @@ func _index_for_hero_name(hero_name: String) -> int:
 	return -1
 
 func _update_ui() -> void:
-	_update_hero_panel("Blood Hunter", blood_icon, blood_name_label, blood_gold_label, blood_cost_label, blood_health_label, blood_speed_label, blood_luck_label, blood_health_button, blood_speed_button, blood_luck_button, blood_health_segments, blood_speed_segments, blood_luck_segments)
+	_update_hero_panel("Gehrman", blood_icon, blood_name_label, blood_gold_label, blood_cost_label, blood_health_label, blood_speed_label, blood_luck_label, blood_health_button, blood_speed_button, blood_luck_button, blood_health_segments, blood_speed_segments, blood_luck_segments)
 	_update_hero_panel("Gwen", gwen_icon, gwen_name_label, null, gwen_cost_label, gwen_health_label, gwen_speed_label, gwen_luck_label, gwen_health_button, gwen_speed_button, gwen_luck_button, gwen_health_segments, gwen_speed_segments, gwen_luck_segments)
 
 func _update_hero_panel(hero_name: String, icon: TextureRect, name_label: Label, gold_label: Label, cost_label: Label, health_label: Label, speed_label: Label, luck_label: Label, health_button: Button, speed_button: Button, luck_button: Button, health_segments: Container, speed_segments: Container, luck_segments: Container) -> void:
@@ -93,13 +93,13 @@ func _can_upgrade(index: int, stat: String) -> bool:
 	return SaveManager.gold >= SaveManager.upgrade_cost and SaveManager.get_level(index, stat) < 10
 
 func _on_upgrade_health() -> void:
-	_upgrade_hero("Blood Hunter", "max_health")
+	_upgrade_hero("Gehrman", "max_health")
 
 func _on_upgrade_speed() -> void:
-	_upgrade_hero("Blood Hunter", "speed")
+	_upgrade_hero("Gehrman", "speed")
 
 func _on_upgrade_luck() -> void:
-	_upgrade_hero("Blood Hunter", "luck")
+	_upgrade_hero("Gehrman", "luck")
 
 func _on_gwen_upgrade_health() -> void:
 	_upgrade_hero("Gwen", "max_health")

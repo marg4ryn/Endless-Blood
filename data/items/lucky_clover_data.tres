@@ -6,37 +6,25 @@
 
 [sub_resource type="Resource" id="Resource_jjm4y"]
 script = ExtResource("1_dmnmc")
-item_id = 12
-luck = 1
+item_id = 9
+luck = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_d265o"]
 script = ExtResource("1_dmnmc")
-item_id = 12
+item_id = 9
 luck = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_uqsv1"]
 script = ExtResource("1_dmnmc")
-item_id = 12
-luck = 3
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_e4ldn"]
-script = ExtResource("1_dmnmc")
-item_id = 12
-luck = 4
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_geyu0"]
-script = ExtResource("1_dmnmc")
-item_id = 12
-luck = 5
+item_id = 9
+luck = 2
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [resource]
 script = ExtResource("2_dmnmc")
 name = "Lucky Clover"
 icon = ExtResource("2_ul6b4")
-bonuses = Array[ExtResource("1_dmnmc")]([SubResource("Resource_jjm4y"), SubResource("Resource_d265o"), SubResource("Resource_uqsv1"), SubResource("Resource_e4ldn"), SubResource("Resource_geyu0")])
+bonuses = Array[ExtResource("1_dmnmc")]([SubResource("Resource_jjm4y"), SubResource("Resource_d265o"), SubResource("Resource_uqsv1")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

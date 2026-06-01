@@ -6,37 +6,25 @@
 
 [sub_resource type="Resource" id="Resource_r1vwe"]
 script = ExtResource("1_hy4io")
-item_id = 6
+item_id = 3
 gold_gain = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_dssfo"]
 script = ExtResource("1_hy4io")
-item_id = 6
-gold_gain = 2
+item_id = 3
+gold_gain = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_f3qqd"]
 script = ExtResource("1_hy4io")
-item_id = 6
-gold_gain = 3
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_yctef"]
-script = ExtResource("1_hy4io")
-item_id = 6
-gold_gain = 4
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_j46cq"]
-script = ExtResource("1_hy4io")
-item_id = 6
-gold_gain = 5
+item_id = 3
+gold_gain = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [resource]
 script = ExtResource("2_hy4io")
 name = "Gold Pendant"
 icon = ExtResource("2_1026o")
-bonuses = Array[ExtResource("1_hy4io")]([SubResource("Resource_r1vwe"), SubResource("Resource_dssfo"), SubResource("Resource_f3qqd"), SubResource("Resource_yctef"), SubResource("Resource_j46cq")])
+bonuses = Array[ExtResource("1_hy4io")]([SubResource("Resource_r1vwe"), SubResource("Resource_dssfo"), SubResource("Resource_f3qqd")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

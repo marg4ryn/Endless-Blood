@@ -6,37 +6,25 @@
 
 [sub_resource type="Resource" id="Resource_m7jrd"]
 script = ExtResource("1_nend5")
-item_id = 10
+item_id = 7
 hp_regen = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_2vlt7"]
 script = ExtResource("1_nend5")
-item_id = 10
-hp_regen = 2
+item_id = 7
+hp_regen = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [sub_resource type="Resource" id="Resource_yu4hk"]
 script = ExtResource("1_nend5")
-item_id = 10
-hp_regen = 3
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_spyri"]
-script = ExtResource("1_nend5")
-item_id = 10
-hp_regen = 4
-metadata/_custom_type_script = "uid://br4dsciwujuog"
-
-[sub_resource type="Resource" id="Resource_mdbgs"]
-script = ExtResource("1_nend5")
-item_id = 10
-hp_regen = 5
+item_id = 7
+hp_regen = 1
 metadata/_custom_type_script = "uid://br4dsciwujuog"
 
 [resource]
 script = ExtResource("2_qdcnx")
 name = "Live Liver"
 icon = ExtResource("2_ts3ve")
-bonuses = Array[ExtResource("1_nend5")]([SubResource("Resource_m7jrd"), SubResource("Resource_2vlt7"), SubResource("Resource_yu4hk"), SubResource("Resource_spyri"), SubResource("Resource_mdbgs")])
+bonuses = Array[ExtResource("1_nend5")]([SubResource("Resource_m7jrd"), SubResource("Resource_2vlt7"), SubResource("Resource_yu4hk")])
 metadata/_custom_type_script = "uid://c87n8phc0rbrv"

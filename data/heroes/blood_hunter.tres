@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_mahqm")
-hero_name = "Blood Hunter"
+hero_name = "Gehrman"
 icon = ExtResource("1_aox81")
 sprite_frames = ExtResource("3_c3jk3")
 max_health = 30

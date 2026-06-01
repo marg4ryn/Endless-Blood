@@ -7,10 +7,10 @@ const TUTORIAL_TEXT_COLOR := Color(1.0, 0.95, 0.95, 1.0)
 const TUTORIAL_MUTED_COLOR := Color(0.9, 0.7, 0.7, 1.0)
 
 const TUTORIAL_STEPS := [
-	{"body": "Hold [←] or [A] to move left", "action": &"move_left", "icon": "←"},
-	{"body": "Hold [→] or [D] to move right", "action": &"move_right", "icon": "→"},
-	{"body": "Hold [↑] or [W] to move up", "action": &"move_up", "icon": "↑"},
-	{"body": "Hold [↓] or [S] to move down", "action": &"move_down", "icon": "↓"},
+	{"body": "Hold [Left] or [A] to move left", "action": &"move_left", "icon": "Left"},
+	{"body": "Hold [Right] or [D] to move right", "action": &"move_right", "icon": "Right"},
+	{"body": "Hold [Up] or [W] to move up", "action": &"move_up", "icon": "Up"},
+	{"body": "Hold [Down] or [S] to move down", "action": &"move_down", "icon": "Down"},
 ]
 
 const TRACKS = [
@@ -134,6 +134,15 @@ func _handle_tutorial_input(event: InputEvent) -> bool:
 		_set_tutorial_step(_tutorial_step_index + 1)
 		return true
 	return false
+	
+func handle_tutorial_direction(direction: Vector2) -> void:
+	if _tutorial_step_index < 0 or _tutorial_step_index >= TUTORIAL_STEPS.size():
+		return
+	var expected_action: StringName = TUTORIAL_STEPS[_tutorial_step_index].get("action", &"")
+	if expected_action == &"":
+		return
+	if Input.is_action_pressed(expected_action):
+		_set_tutorial_step(_tutorial_step_index + 1)
 
 func _complete_first_run_tutorial() -> void:
 	SaveManager.mark_tutorial_seen()

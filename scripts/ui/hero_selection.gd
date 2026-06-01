@@ -45,12 +45,12 @@ func _update_cards() -> void:
 		if h.hero_name == "Gwen":
 			gwen_name_label.text = h.hero_name
 			gwen_icon.texture = h.icon
-		elif h.hero_name == "Blood Hunter":
+		elif h.hero_name == "Gehrman":
 			blood_hunter_name_label.text = h.hero_name
 			blood_hunter_icon.texture = h.icon
 
 	var gwen_index := _index_for_hero_name("Gwen")
-	var blood_index := _index_for_hero_name("Blood Hunter")
+	var blood_index := _index_for_hero_name("Gehrman")
 	var gwen_selected := _selected_index == gwen_index and gwen_index != -1
 	var blood_selected := _selected_index == blood_index and blood_index != -1
 
@@ -72,7 +72,7 @@ func _on_select_gwen_pressed() -> void:
 		_apply_selection(index)
 
 func _on_select_blood_hunter_pressed() -> void:
-	var index := _index_for_hero_name("Blood Hunter")
+	var index := _index_for_hero_name("Gehrman")
 	if index != -1:
 		_apply_selection(index)
 
