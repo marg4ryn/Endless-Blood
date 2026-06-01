@@ -39,9 +39,9 @@ func _do_attack() -> void:
 func make_attack() -> Attack:
 	var a := Attack.new()
 	a.knockback = stats.knockback 
-	a.damage_physical = stats.damage_physical + player.bonus_physical_damage
-	a.damage_fire = stats.damage_fire + player.bonus_fire_damage
-	a.damage_holy = stats.damage_holy + player.bonus_holy_damage
+	a.damage_physical = stats.damage_physical + player.bonus_physical_damage if stats.damage_physical > 0 else 0
+	a.damage_fire = stats.damage_fire + player.bonus_fire_damage if stats.damage_fire > 0 else 0
+	a.damage_holy = stats.damage_holy + player.bonus_holy_damage if stats.damage_holy > 0 else 0
 	return a
 
 func update_timer():
