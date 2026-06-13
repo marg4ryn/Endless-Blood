@@ -1,12 +1,18 @@
 [gd_resource type="Resource" script_class="HeroData" format=3 uid="uid://okpub58oe5y4"]
 
 [ext_resource type="Texture2D" uid="uid://dbo0fib7agul1" path="res://assets/heroes/blood_hunter_icon.png" id="1_aox81"]
+[ext_resource type="AudioStream" uid="uid://crxi7h0xqueox" path="res://assets/sounds/male_death.mp3" id="1_ferfc"]
 [ext_resource type="Script" uid="uid://cn2nic8goiihk" path="res://data/heroes/hero_data.gd" id="1_mahqm"]
+[ext_resource type="AudioStream" uid="uid://cdev14qm7jhnw" path="res://assets/sounds/male_hurt_1.mp3" id="2_c7kp6"]
+[ext_resource type="AudioStream" uid="uid://c0g07r3qcix15" path="res://assets/sounds/male_hurt_2.mp3" id="3_2qbsk"]
 [ext_resource type="SpriteFrames" uid="uid://itwe4yj88cbr" path="res://data/heroes/blood_hunter_sprite_frames.tres" id="3_c3jk3"]
+[ext_resource type="AudioStream" uid="uid://bhv4aqea3wd3n" path="res://assets/sounds/male_hurt_3.mp3" id="4_3op6c"]
 
 [resource]
 script = ExtResource("1_mahqm")
 hero_name = "Gehrman"
+death_sound = ExtResource("1_ferfc")
+hurt_sounds = Array[AudioStream]([ExtResource("2_c7kp6"), ExtResource("3_2qbsk"), ExtResource("4_3op6c")])
 icon = ExtResource("1_aox81")
 sprite_frames = ExtResource("3_c3jk3")
 max_health = 30

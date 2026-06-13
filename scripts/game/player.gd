@@ -15,8 +15,8 @@ const DAMAGE_FONT: FontFile = preload("res://assets/fonts/Gothikka.ttf")
 @onready var mobile_hud := $MobileHud
 @onready var hud := player_hud
 
-@export var die_sound: AudioStream
-@export var hurt_sounds: Array[AudioStream]
+var die_sound: AudioStream
+var hurt_sounds: Array[AudioStream]
 
 var facing_direction := Vector2.DOWN
 var facing_direction_x := 1
@@ -64,6 +64,8 @@ func _ready():
 	
 	var h = SaveManager.selected_hero
 	var i = SaveManager.selected_hero_index
+	die_sound = h.death_sound
+	hurt_sounds = h.hurt_sounds
 	base_max_health = SaveManager.get_stat(i, "max_health", h.max_health)
 	base_speed      = SaveManager.get_stat(i, "speed", h.speed)
 	base_luck       = SaveManager.get_stat(i, "luck", h.luck)

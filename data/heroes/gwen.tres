@@ -1,12 +1,18 @@
 [gd_resource type="Resource" script_class="HeroData" format=3 uid="uid://dt2yciapj1sw3"]
 
 [ext_resource type="Texture2D" uid="uid://coy5xo468n7q" path="res://assets/heroes/gwen_icon.png" id="1_icon"]
+[ext_resource type="AudioStream" uid="uid://ckgdaprtdfo3" path="res://assets/sounds/female_death.mp3" id="1_m5bd1"]
 [ext_resource type="Script" uid="uid://cn2nic8goiihk" path="res://data/heroes/hero_data.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://dc0nwc6bjbn3x" path="res://assets/sounds/female_hurt_1.mp3" id="2_73xas"]
 [ext_resource type="SpriteFrames" uid="uid://ynivef0dfcgq" path="res://data/heroes/gwen_sprite_frames_sheet.tres" id="2_frames"]
+[ext_resource type="AudioStream" uid="uid://bw3ulgpcsea1l" path="res://assets/sounds/female_hurt_2.mp3" id="3_lkpv7"]
+[ext_resource type="AudioStream" uid="uid://x4ws0mer0ifw" path="res://assets/sounds/female_hurt_3.mp3" id="4_crp41"]
 
 [resource]
 script = ExtResource("1_script")
 hero_name = "Gwen"
+death_sound = ExtResource("1_m5bd1")
+hurt_sounds = Array[AudioStream]([ExtResource("2_73xas"), ExtResource("3_lkpv7"), ExtResource("4_crp41")])
 icon = ExtResource("1_icon")
 sprite_frames = ExtResource("2_frames")
 max_health = 20

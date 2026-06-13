@@ -15,14 +15,16 @@ const TUTORIAL_STEPS := [
 
 const TRACKS = [
 	preload("res://assets/music/Before Concession.mp3"),
-	preload("res://assets/music/Unholy Invocation.mp3")
+	preload("res://assets/music/Unholy Invocation.mp3"),
+	preload("res://assets/music/Bloody Tears.mp3"),
+	preload("res://assets/music/Cosmic Delight.mp3"),
+	preload("res://assets/music/Legacy of the Moonspell.mp3")
 ]
 
 var _tutorial_layer: CanvasLayer
 var _tutorial_root: Control
 var _tutorial_banner: PanelContainer
 var _tutorial_content: Control
-var _tutorial_title: Label
 var _tutorial_body: Label
 var _tutorial_step_label: Label
 var _tutorial_progress_label: Label

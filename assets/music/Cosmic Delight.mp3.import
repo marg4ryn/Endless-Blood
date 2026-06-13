@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cwyxtsw2rhudy"
+path="res://.godot/imported/Cosmic Delight.mp3-b124ce14cb0ac0b6fca8124d9fd05e85.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Cosmic Delight.mp3"
+dest_files=["res://.godot/imported/Cosmic Delight.mp3-b124ce14cb0ac0b6fca8124d9fd05e85.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

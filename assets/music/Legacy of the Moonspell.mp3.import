@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1big6hcqiw1f"
+path="res://.godot/imported/Legacy of the Moonspell.mp3-3b12372439c4370c7eff5371ebf0d690.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Legacy of the Moonspell.mp3"
+dest_files=["res://.godot/imported/Legacy of the Moonspell.mp3-3b12372439c4370c7eff5371ebf0d690.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
